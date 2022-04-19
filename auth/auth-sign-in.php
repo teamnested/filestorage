@@ -56,7 +56,7 @@ if (isset($_SESSION['message'])) {
                         <img src="assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo logo" alt="logo"> -->
                      <h3 class="mb-3">Sign In</h3>
                      <p>Login to stay connected.</p>
-                     <form action="../action/login-action.php" method="POST">
+                     <form action="../action/sing-in-action.php" method="POST">
                         <div class="row">
                            <div class="col-lg-12">
                               <?php
