@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>File Storage | Store and Explore Your Files </title>
+      <title>File Storage | Store and Explore Your Files</title>
       
       <!-- Favicon -->
       <link rel="shortcut icon" href="assets/images/favicon.ico" />

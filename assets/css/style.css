@@ -1,0 +1,46 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+
+}
+header .logo a{
+text-decoration: none;
+color: green;
+font-size: 24px;
+font-weight: bold;
+}
+
+.dots img {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.header-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-items .btn a{
+    background-color: rgb(196, 54, 54);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 15px;
+    color: #FFF;
+    margin-right: 5px;
+}
+
+
+
