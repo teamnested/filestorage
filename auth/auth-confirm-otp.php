@@ -53,11 +53,11 @@ session_start()
                      <h3 class="mb-3">Enter 6 digit OTP</h3>
                      <p>One Time Passcode (OTP) has been sent to <Strong> <?php echo $_SESSION['email'] ?> </Strong></p>
                      <p>Please enter the OTP below to verify your Email Address. If you cannot see the email from "File Storage" in your inbox, make sure to check your SPAM folder.</p>
-                     <form>
+                     <form action="../action/verify-otp.php" method="POST">
                         <div class="row">
                            <div class="col-lg-12">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" type="text" placeholder=" ">
+                                 <input class="floating-input form-control" type="text" name="otp" placeholder=" ">
                                  <label>Enter 6 Digit OTP</label>
                               </div>
                            </div>
