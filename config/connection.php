@@ -1,17 +1,8 @@
-<?php 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "filestorage";
+<?php
+include 'config.php';
 
-// Create connection
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// check connection
-
-if($conn->connect_error){
-    die("Connection Failed:" .$conn->connect_error);
+if ($conn->connect_error) {
+    die("Connection Failed:" . $conn->connect_error);
 }
-
-// echo "Database Connection Successfull";
