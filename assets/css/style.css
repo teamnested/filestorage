@@ -4,7 +4,7 @@
 }
 body{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+    background-color: #1D1D1F;
 }
 
 header {
@@ -16,9 +16,10 @@ header {
 }
 header .logo a{
 text-decoration: none;
-color: green;
+color: #6C6FB7;
 font-size: 24px;
 font-weight: bold;
+
 }
 
 .dots img {
@@ -26,6 +27,7 @@ font-weight: bold;
   align-items: center;
   width: 20px;
   height: 20px;
+  margin-left: 15px;
 }
 
 .header-items {
@@ -34,13 +36,64 @@ font-weight: bold;
   align-items: center;
 }
 .header-items .btn a{
-    background-color: rgb(196, 54, 54);
+    background-color: #6C6FB7;
     text-decoration: none;
     padding: 6px 10px;
-    border-radius: 15px;
+    border-radius: 5px;
     color: #FFF;
-    margin-right: 5px;
+    margin-left: 15px;
 }
 
+nav{
+    display: flex;
+    justify-content: center;
+    margin-top: -50px;
+    margin-bottom: -30px;
+}
+
+nav li{
+    list-style-type: none;
+    padding: 50px;
+}
+
+nav li a{
+    text-decoration: none;
+    color: #bbbb2a;
+   font-weight: bold;
+}
+
+nav li a:hover{
+ background-color: #6C6FB7;
+ color: #FFF;
+ padding: 10px;
+ border-radius: 5px;
+}
+
+#start-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 100px;
+  height: 50vh;
+}
+
+#start-section h1{
+  font-size: 40px;
+  color: #6C6FB7;
+  margin-bottom: 20px;
+}
+#start-section p{
+  color: #6C6FB7;
+  margin-bottom: 20px;
+}
+
+#start-section a{
+  text-decoration: none;
+  background-color: #6C6FB7;
+  border-radius: 5px;
+  padding: 6px 8px;
+  color: #FFF;
+}
 
 

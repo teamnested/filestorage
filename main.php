@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Storage | Store and Explore Your Files</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
@@ -27,6 +28,22 @@
             </div>
         </header>
     </section>
+    <section>
+        <nav>
+            <li><a href="#start-section">What is File Storage</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Pricing</a></li>
+        </nav>
+    </section>
+    <hr>
+
+    <section id="start-section">
+        <h1>Reliable Storage and Fast Transfers</h1>
+        <p>Create a Account to get <strong>5 GB FREE</strong> Storage</p>
+        <a href="./auth/auth-sign-up.php">Create Account</a>
+    </section>
+
 </body>
 
 </html>
