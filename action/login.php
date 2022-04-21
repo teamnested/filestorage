@@ -19,6 +19,7 @@ if ($count) {
 
     if ($userpassword == $password) {
         $_SESSION['is_authenticated'] = true;
+        $_SESSION['is_verified'] = $result['is_verified'];
         $_SESSION['id'] = $result['id'];
         $_SESSION['first_name'] = $result['first_name'];
         $_SESSION['last_name'] = $result['last_name'];

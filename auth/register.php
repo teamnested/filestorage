@@ -2,6 +2,14 @@
 session_start();
 require_once '../config/config.php';
 
+if (isset($_SESSION['is_authenticated'])) {
+   if (isset($_SESSION['is_verified'])) {
+      header('Location: ' . BASE_URL . 'dashboard');
+   } else {
+      header('Location: ' . BASE_URL . 'auth/verify');
+   }
+}
+
 if (isset($_SESSION['message'])) {
    $message = $_SESSION['message'];
 }

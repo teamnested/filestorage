@@ -1,3 +1,6 @@
+<?php
+include 'config/config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +19,10 @@
             </div>
             <div class="header-items">
                 <div class="btn">
-                    <a href="./auth/auth-sign-up.php">Create Account</a>
+                    <a href="<?php echo BASE_URL . 'auth/register' ?>">Create Account</a>
                 </div>
                 <div class="btn">
-                    <a href="./auth/auth-sign-in.php">Log in</a>
+                    <a href="<?php echo BASE_URL . 'auth/login' ?>">Log in</a>
                 </div>
                 <div class="dots">
                     <a href="#"><img src="./assets/images/ellipsis-vertical-solid.svg" alt="" srcset=""></a>

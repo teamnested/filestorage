@@ -3,7 +3,11 @@ session_start();
 require_once '../config/config.php';
 
 if (isset($_SESSION['is_authenticated'])) {
-   header('Location: ' . BASE_URL . 'dashboard');
+   if (isset($_SESSION['is_verified'])) {
+      header('Location: ' . BASE_URL . 'dashboard');
+   } else {
+      header('Location: ' . BASE_URL . 'auth/verify');
+   }
 }
 
 if (isset($_SESSION['message'])) {
@@ -60,7 +64,7 @@ if (isset($_SESSION['message'])) {
                         <img src="assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo logo" alt="logo"> -->
                      <h3 class="mb-3">Sign In</h3>
                      <p>Login to stay connected.</p>
-                     <form action="<?php echo BASE_URL . 'action/sign-in-action.php' ?>" method="POST">
+                     <form action="<?php echo BASE_URL . 'action/login' ?>" method="POST">
                         <div class="row">
                            <div class="col-lg-12">
                               <?php
