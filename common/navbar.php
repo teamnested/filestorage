@@ -117,7 +117,7 @@
                                                     <h5><a href="app/user-profile-edit.html">Panny Marco</a></h5>
                                                     <p>pannymarco@gmail.com</p>
                                                 </div>
-                                                <a href="auth/auth-sign-in.php" class="btn btn-primary">Sign Out</a>
+                                                <a href="<?php echo BASE_URL . 'auth/login' ?>" class="btn btn-primary">Sign Out</a>
                                             </div>
                                         </div>
                                     </div>

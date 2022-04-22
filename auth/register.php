@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/connection.php';
+require_once '../config/config.php';
 
 if (isset($_SESSION['message'])) {
    $message = $_SESSION['message'];
@@ -16,7 +16,7 @@ if (isset($_SESSION['message'])) {
    <title>File Storage | Store and Explore Your Files</title>
 
    <!-- Favicon -->
-   <link rel="shortcut icon" href="assets/images/favicon.ico" />
+   <link rel="shortcut icon" href="../assets/images/favicon.ico" />
 
    <link rel="stylesheet" href="../assets/css/backend.min.css">
    <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
@@ -52,11 +52,11 @@ if (isset($_SESSION['message'])) {
             <div class="row justify-content-center align-items-center height-self-center">
                <div class="col-md-5 col-sm-12 col-12 align-self-center">
                   <div class="sign-user_card">
-                     <!-- <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo">
-                        <img src="assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo logo" alt="logo"> -->
-                     <h3 class="mb-3">Sign In</h3>
-                     <p>Login to stay connected.</p>
-                     <form action="../action/sing-in-action.php" method="POST">
+                     <!-- <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo">
+                        <img src="../assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo logo" alt="logo"> -->
+                     <h3 class="mb-3">Sign Up</h3>
+                     <p>Create your account.</p>
+                     <form action="<?php echo BASE_URL . 'action/register' ?>" method="POST">
                         <div class="row">
                            <div class="col-lg-12">
                               <?php
@@ -67,32 +67,41 @@ if (isset($_SESSION['message'])) {
                               <?php
                                  unset($_SESSION['message']);
                               } ?>
-
+                           </div>
+                           <div class="col-lg-6">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" name="email" type="email" placeholder=" " required>
-                                 <label>Email</label>
+                                 <input class="floating-input form-control" name="first_name" type="text" value="<?php echo @$_POST['first_name'] ?>" placeholder=" ">
+                                 <label>Full Name</label>
+                              </div>
+                           </div>
+                           <div class="col-lg-6">
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control" name="last_name" type="text" value="<?php echo @$_POST['last_name'] ?>" placeholder=" ">
+                                 <label>Last Name</label>
                               </div>
                            </div>
                            <div class="col-lg-12">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" name="password" type="password" placeholder=" " required>
+                                 <input class="floating-input form-control" name="email" type="email" value="<?php echo @$_POST['email'] ?>" placeholder=" ">
+                                 <label>Email</label>
+                              </div>
+                           </div>
+                           <div class="col-lg-6">
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control" name="password" type="password" placeholder=" ">
                                  <label>Password</label>
                               </div>
                            </div>
-
                            <div class="col-lg-6">
-                              <div class="custom-control custom-checkbox mb-3 text-left">
-                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                 <label class="custom-control-label" for="customCheck1">Remember Me</label>
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control" name="confirm_password" type="password" placeholder=" ">
+                                 <label>Confirm Password</label>
                               </div>
                            </div>
-                           <div class="col-lg-6">
-                              <a href="./auth-recoverpw.php" class="text-primary float-right">Forgot Password?</a>
-                           </div>
                         </div>
-                        <button type="submit" name="sign_in" class="btn btn-primary">Sign In</button>
+                        <button type="submit" name="sign_up" class="btn btn-primary">Sign Up</button>
                         <p class="mt-3">
-                           Create an Account <a href="auth-sign-up.php" class="text-primary">Sign Up</a>
+                           Already have an Account <a href="<?php echo BASE_URL . 'auth/login' ?>" class="text-primary">Sign In</a>
                         </p>
                      </form>
                   </div>

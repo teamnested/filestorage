@@ -15,19 +15,20 @@ if ($count) {
     $result = mysqli_fetch_array($query);
 
     $useremail = $result['email'];
-    $userpassword = $result['password'];
+    $hashedPassword = $result['password'];
 
-    if ($userpassword == $password) {
+    if (password_verify($password, $hashedPassword)){
+        $_SESSION['is_authenticated'] = true;
         $_SESSION['id'] = $result['id'];
         $_SESSION['first_name'] = $result['first_name'];
         $_SESSION['last_name'] = $result['last_name'];
 
-        //  header('Location: ../index.php');
+        header('Location: ' . BASE_URL . 'dashboard.php');
     } else {
-        $_SESSION['message'] = "Invalid credentials !";
-        header('Location: ../auth/auth-sign-in.php');
+        $_SESSION['message'] = "Invalid Credentials !";
+        header('Location: ' . BASE_URL . 'auth/login');
     }
 } else {
-    $_SESSION['message'] = "Invalid credentials !";
-    header('Location: ../auth/auth-sign-in.php');
+    $_SESSION['message'] = "Invalid Credentials !";
+    header('Location: ' . BASE_URL . 'auth/login');
 }
