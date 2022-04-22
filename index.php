@@ -1,5 +1,5 @@
 <?php
-require 'config/config.php';
+include 'config/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,7 @@ require 'config/config.php';
             </div>
             <div class="header-items">
                 <div class="btn">
-                    <a href="./auth/auth-sign-up.php"><i class="las la-user-plus"></i> Create Account</a>
+                    <a href="<?php echo BASE_URL . 'auth/register' ?>"><i class="las la-user-plus"></i> Create Account</a>
                 </div>
                 <div class="btn">
                     <a href="<?php echo BASE_URL . 'auth/login' ?>"><i class="las la-sign-in-alt"></i> Log in</a>

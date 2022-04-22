@@ -69,9 +69,8 @@ Please click the button below to verify your email address:<br />
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        $mail->setFrom('mailto.minicloudstorage@gmail.com', 'Mini-Cloud Storage');
+        $mail->setFrom('mailto.minicloudstorage@gmail.com', 'File Storage');
         $mail->addAddress($to, $name);
-        $mail->addReplyTo('mcs@rahulthapa.com.np', 'Mini-Cloud Storage');
 
         $mail->isHTML(true);
         $mail->Subject = $subject;

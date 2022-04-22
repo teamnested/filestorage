@@ -19,19 +19,32 @@ if (empty($firstName) || empty($lastName) || empty($email) || empty($password) |
 } else if ($password != $confirmPassword) {
    responseData('Password and Confirm Password does not match', false);
 } else {
-   $password = password_hash($password, PASSWORD_DEFAULT);
-   $sql = "INSERT INTO users(first_name, last_name, email, password, otp, hash) values ('$firstName', '$lastName', '$email', '$password', '$otp', '$hash')";
-   $query = mysqli_query($conn, $sql);
 
-   if ($query) {
-      $_SESSION['email'] = $email;
-      $selectUser = "SELECT * FROM users WHERE email = '$email'";
-      $queryUser = mysqli_query($conn, $selectUser);
-      $currentUser = mysqli_fetch_object($queryUser);
-      sendVerificationMail($currentUser);
-      responseData("Successfully Registered !");
+   $checkEmailSql = "SELECT * FROM users WHERE email = '$email'";
+   $checkEmailQuery = mysqli_query($conn, $checkEmailSql);
+   $isEmailExists = mysqli_num_rows($checkEmailQuery);
+   if ($isEmailExists) {
+      responseData("Email Already Exists !", false);
    } else {
-      responseData("Something went wrong !", false);
+      $password = password_hash($password, PASSWORD_DEFAULT);
+      $sql = "INSERT INTO users(first_name, last_name, email, password, otp, hash) values ('$firstName', '$lastName', '$email', '$password', '$otp', '$hash')";
+      $query = mysqli_query($conn, $sql);
+
+      if ($query) {
+         $selectUser = "SELECT * FROM users WHERE email = '$email'";
+         $queryUser = mysqli_query($conn, $selectUser);
+         $currentUser = mysqli_fetch_object($queryUser);
+         $_SESSION['is_authenticated'] = true;
+         $_SESSION['is_verified'] = $currentUser->is_verified;
+         $_SESSION['id'] = $currentUser->id;
+         $_SESSION['first_name'] = $currentUser->first_name;
+         $_SESSION['last_name'] = $currentUser->last_name;
+         $_SESSION['email'] = $currentUser->email;
+         sendVerificationMail($currentUser);
+         responseData("Successfully Registered !");
+      } else {
+         responseData("Something went wrong !", false);
+      }
    }
 }
 

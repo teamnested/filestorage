@@ -2,7 +2,13 @@
 session_start();
 require_once './config/connection.php';
 
-if (!isset($_SESSION['is_authenticated'])) {
+if (isset($_SESSION['is_authenticated'])) {
+  if (isset($_SESSION['is_verified'])) {
+    if (!$_SESSION['is_verified']) {
+      header('Location: ' . BASE_URL . 'auth/verify');
+    }
+  }
+} else {
   header('Location: ' . BASE_URL . 'auth/login');
 }
 ?>

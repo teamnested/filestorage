@@ -1,11 +1,11 @@
 <div class="iq-sidebar  sidebar-default ">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
-        <a href="<?php echo basename('index.php')?>" class="header-logo">File Storage
+        <a href="<?php echo BASE_URL.'dashboard'?>" class="header-logo">File Storage
             <!-- <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
             <img src="assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo" alt="logo"> -->
         </a>
         <div class="iq-menu-bt-sidebar">
-            <i class="las la-bars wrapper-menu"></i>
+            <i class="las la-bars wrapper-menu"></i>    
         </div>
     </div>
     <div class="data-scrollbar" data-scroll="1">

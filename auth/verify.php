@@ -2,7 +2,13 @@
 session_start();
 require_once '../config/connection.php';
 
-if (!isset($_SESSION['is_authenticated'])) {
+if (isset($_SESSION['is_authenticated'])) {
+   if (isset($_SESSION['is_verified'])) {
+      if ($_SESSION['is_verified']) {
+         header('Location: ' . BASE_URL . 'dashboard');
+      }
+   }
+} else {
    header('Location: ' . BASE_URL . 'auth/login');
 }
 ?>
@@ -57,7 +63,7 @@ if (!isset($_SESSION['is_authenticated'])) {
                      <h3 class="mb-3">Enter 6 digit OTP</h3>
                      <p>One Time Passcode (OTP) has been sent to <Strong> <?php echo $_SESSION['email'] ?> </Strong></p>
                      <p>Please enter the OTP below to verify your Email Address. If you cannot see the email from "File Storage" in your inbox, make sure to check your SPAM folder.</p>
-                     <form action="../action/verify-otp.php" method="POST">
+                     <form action="<?php echo BASE_URL . 'action/verify' ?>" method="POST">
                         <div class="row">
                            <div class="col-lg-12">
                               <div class="floating-label form-group">

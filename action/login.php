@@ -19,9 +19,11 @@ if ($count) {
 
     if (password_verify($password, $hashedPassword)){
         $_SESSION['is_authenticated'] = true;
+        $_SESSION['is_verified'] = $result['is_verified'];
         $_SESSION['id'] = $result['id'];
         $_SESSION['first_name'] = $result['first_name'];
         $_SESSION['last_name'] = $result['last_name'];
+        $_SESSION['email'] = $result['email'];
 
         header('Location: ' . BASE_URL . 'dashboard.php');
     } else {

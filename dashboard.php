@@ -57,8 +57,8 @@
                     <div class="card card-block card-stretch card-height iq-welcome" style="background: url(assets/images/layouts/mydrive/background.png) no-repeat scroll right center; background-color: #ffffff; background-size: contain;">
                         <div class="card-body property2-content">
                             <div class="d-flex flex-wrap align-items-center">
-                                <div class="col-lg-6 col-sm-6 p-0">
-                                    <h3 class="mb-3">Welcome Penny</h3>
+                                <div class="col-lg-12 col-sm-12 p-0">
+                                    <h3 class="mb-3">Welcome <?php echo $_SESSION['first_name'];?></h3>
                                     <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
                                     <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
                                 </div>
