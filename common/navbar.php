@@ -20,22 +20,22 @@
                                 </span>
                             </label>
                             <ul class="dropdown-menu">
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=pdf' ?>">
                                         <div class="item"><i class="far fa-file-pdf bg-info"></i>PDFs</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=document' ?>">
                                         <div class="item"><i class="far fa-file-alt bg-primary"></i>Documents</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=spreadsheet' ?>">
                                         <div class="item"><i class="far fa-file-excel bg-success"></i>Spreadsheet</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=presentation' ?>">
                                         <div class="item"><i class="far fa-file-powerpoint bg-danger"></i>Presentation</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=image' ?>">
                                         <div class="item"><i class="far fa-file-image bg-warning"></i>Photos & Images</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=video' ?>">
                                         <div class="item"><i class="far fa-file-video bg-info"></i>Videos</div>
                                     </a></li>
                             </ul>

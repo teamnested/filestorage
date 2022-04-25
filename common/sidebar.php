@@ -1,11 +1,10 @@
 <div class="iq-sidebar  sidebar-default ">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
-        <a href="<?php echo BASE_URL.'dashboard'?>" class="header-logo">File Storage
-            <!-- <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
-            <img src="assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo" alt="logo"> -->
+        <a href="<?php echo BASE_URL . 'dashboard' ?>" class="header-logo">
+            File Storage
         </a>
         <div class="iq-menu-bt-sidebar">
-            <i class="las la-bars wrapper-menu"></i>    
+            <i class="las la-bars wrapper-menu"></i>
         </div>
     </div>
     <div class="data-scrollbar" data-scroll="1">
@@ -33,7 +32,7 @@
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="active">
-                    <a href="index.php" class="">
+                    <a href="<?php echo BASE_URL . 'dashboard' ?>" class="">
                         <i class="las la-home iq-arrow-left"></i><span>Dashboard</span>
                     </a>
                     <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
@@ -41,28 +40,28 @@
                 </li>
 
                 <li class=" ">
-                    <a href="files.php" class="">
+                    <a href="<?php echo BASE_URL . 'files' ?>" class="">
                         <i class="lar la-file-alt iq-arrow-left"></i><span>Files</span>
                     </a>
                     <ul id="page-files" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                 </li>
                 <li class=" ">
-                    <a href="recent-files.php" class="">
+                    <a href="<?php echo BASE_URL . 'recent-files' ?>" class="">
                         <i class="las la-stopwatch iq-arrow-left"></i><span>Recent</span>
                     </a>
                     <ul id="page-folders" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                 </li>
                 <li class=" ">
-                    <a href="fav-page.php" class="">
+                    <a href="<?php echo BASE_URL . 'favourite' ?>" class="">
                         <i class="lar la-star"></i><span>Favourite</span>
                     </a>
                     <ul id="page-fevourite" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                 </li>
                 <li class=" ">
-                    <a href="trash.php" class="">
+                    <a href="<?php echo BASE_URL . 'trash' ?>" class="">
                         <i class="las la-trash-alt iq-arrow-left"></i><span>Trash</span>
                     </a>
                     <ul id="page-delete" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">

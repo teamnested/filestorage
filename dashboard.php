@@ -58,7 +58,7 @@
                         <div class="card-body property2-content">
                             <div class="d-flex flex-wrap align-items-center">
                                 <div class="col-lg-12 col-sm-12 p-0">
-                                    <h3 class="mb-3">Welcome <?php echo $_SESSION['first_name'];?></h3>
+                                    <h3 class="mb-3">Welcome <?php echo $_SESSION['first_name']; ?></h3>
                                     <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
                                     <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
                                 </div>
@@ -103,7 +103,7 @@
                                 <h4 class="card-title">Documents</h4>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
-                                <a href="./recent-files.php" class=" view-more">View All</a>
+                                <a href="<?php echo BASE_URL . 'files?type=documents' ?>" class=" view-more">View All</a>
                             </div>
                         </div>
                     </div>
@@ -317,7 +317,7 @@
                                 <h4 class="card-title">Files</h4>
                             </div>
                             <div class="card-header-toolbar d-flex align-items-center">
-                                <a href="./page-files.html" class=" view-more">View All</a>
+                                <a href="<?php echo BASE_URL . 'files' ?>" class=" view-more">View All</a>
                             </div>
                         </div>
                         <div class="card-body pt-0">
