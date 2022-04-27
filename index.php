@@ -1,390 +1,280 @@
-<?php include('common/header.php') ?>
+<?php
+include 'config/config.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="wrapper">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Storage | Store and Explore Your Files</title>
+    <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
 
-    <?php include('common/sidebar.php') ?>
-    <?php include('common/navbar.php') ?>
+<body>
 
-    <div class="content-page">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card-transparent card-block card-stretch card-height mb-3">
-                        <div class="d-flex justify-content-between">
-                            <div class="select-dropdown input-prepend input-append">
-                                <div class="btn-group">
-                                    <label data-toggle="dropdown">
-                                        <div class="dropdown-toggle search-query">My Drive<i class="las la-angle-down ml-3"></i></div><span class="search-replace"></span>
-                                        <span class="caret">
-                                            <!--icon-->
-                                        </span>
-                                    </label>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <div class="item"><i class="ri-folder-add-line pr-3"></i>New Folder</div>
-                                        </li>
-                                        <li>
-                                            <div class="item"><i class="ri-file-upload-line pr-3"></i>Upload Files</div>
-                                        </li>
-                                        <li>
-                                            <div class="item"><i class="ri-folder-upload-line pr-3"></i>Upload Folders</div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="dashboard1-dropdown d-flex align-items-center">
-                                <div class="dashboard1-info">
-                                    <a href="#calander" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                                        <i class="ri-arrow-down-s-line"></i>
-                                    </a>
-                                    <ul id="calander" class="iq-dropdown collapse list-inline m-0 p-0 mt-2">
-                                        <li class="mb-2">
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="Calander"><i class="las la-calendar iq-arrow-left"></i></a>
-                                        </li>
-                                        <li class="mb-2">
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="Keep"><i class="las la-lightbulb iq-arrow-left"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="Tasks"><i class="las la-tasks iq-arrow-left"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- TOP HEADER START FORM HERE  -->
+    <section>
+        <header>
+            <div class="logo"><a href="<?php echo BASE_URL ?>">File Storage</a>
+            </div>
+            <div class="header-items">
+                <div class="btn">
+                    <a href="<?php echo BASE_URL . 'auth/register' ?>"><i class="las la-user-plus"></i> Create Account</a>
                 </div>
-                <div class="col-lg-8">
-                    <div class="card card-block card-stretch card-height iq-welcome" style="background: url(assets/images/layouts/mydrive/background.png) no-repeat scroll right center; background-color: #ffffff; background-size: contain;">
-                        <div class="card-body property2-content">
-                            <div class="d-flex flex-wrap align-items-center">
-                                <div class="col-lg-6 col-sm-6 p-0">
-                                    <h3 class="mb-3">Welcome Penny</h3>
-                                    <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
-                                    <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-header d-flex justify-content-between">
-                            <div class="header-title">
-                                <h4 class="card-title">Quick Access</h4>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-inline p-0 mb-0 row align-items-center">
-                                <li class="col-lg-6 col-sm-6 mb-3 mb-sm-0">
-                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="Product-planning.pdf" style="cursor: pointer;" class="p-2 text-center border rounded">
-                                        <div>
-                                            <img src="assets/images/layouts/mydrive/folder-1.png" class="img-fluid mb-1" alt="image1">
-                                        </div>
-                                        <p class="mb-0">Planning</p>
-                                    </div>
-                                </li>
-                                <li class="col-lg-6 col-sm-6">
-                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="Wireframe.docx" style="cursor: pointer;" class="p-2 text-center border rounded">
-                                        <div>
-                                            <img src="assets/images/layouts/mydrive/folder-2.png" class="img-fluid mb-1" alt="image2">
-                                        </div>
-                                        <p class="mb-0">Wireframe</p>
-                                    </div>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="card card-block card-stretch card-transparent ">
-                        <div class="card-header d-flex justify-content-between pb-0">
-                            <div class="header-title">
-                                <h4 class="card-title">Documents</h4>
-                            </div>
-                            <div class="card-header-toolbar d-flex align-items-center">
-                                <a href="./recent-files.php" class=" view-more">View All</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="Terms.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="assets/images/file-type/pdf.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>Terms.pdf</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="New-one.docx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="assets/images/file-type/doc.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>New-one.docx</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="Woo-box.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="assets/images/file-type/xlsx.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>Woo-box.xlsx</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb doc-text">
-                            <a href="#" data-title="IOS-content.pptx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pptx" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="assets/images/file-type/ppt.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>IOS-content.pptx</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="card card-block card-stretch card-transparent">
-                        <div class="card-header d-flex justify-content-between pb-0">
-                            <div class="header-title">
-                                <h4 class="card-title">Folders</h4>
-                            </div>
-                            <div class="card-header-toolbar d-flex align-items-center">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle dropdown-bg btn bg-white" id="dropdownMenuButton1" data-toggle="dropdown">
-                                        Name<i class="ri-arrow-down-s-line ml-1"></i>
-                                    </span>
-                                    <div class="dropdown-menu dropdown-menu-right shadow-none" aria-labelledby="dropdownMenuButton1">
-                                        <a class="dropdown-item" href="#">Last modified</a>
-                                        <a class="dropdown-item" href="#">Last modifiedby me</a>
-                                        <a class="dropdown-item" href="#">Last opened by me</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-alexa.html" class="folder">
-                                    <div class="icon-small bg-danger rounded mb-4">
-                                        <i class="ri-folder-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="./page-alexa.html" class="folder">
-                                <h5 class="mb-2">Alexa Workshop</h5>
-                                <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> 10 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-danger mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-android.html" class="folder">
-                                    <div class="icon-small bg-primary rounded mb-4">
-                                        <i class="ri-folder-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton3" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton3">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="./page-android.html" class="folder">
-                                <h5 class="mb-2">Android</h5>
-                                <p class="mb-2"><i class="lar la-clock text-primary mr-2 font-size-20"></i> 09 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-primary mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-brightspot.html" class="folder">
-                                    <div class="icon-small bg-info rounded mb-4">
-                                        <i class="ri-folder-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton4" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton4">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="./page-brightspot.html" class="folder">
-                                <h5 class="mb-2">Brightspot</h5>
-                                <p class="mb-2"><i class="lar la-clock text-info mr-2 font-size-20"></i> 07 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-info mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-ionic.html" class="folder">
-                                    <div class="icon-small bg-success rounded mb-4">
-                                        <i class="ri-folder-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton5" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton5">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="./page-ionic.html" class="folder">
-                                <h5 class="mb-2">Ionic Chat App</h5>
-                                <p class="mb-2"><i class="lar la-clock text-success mr-2 font-size-20"></i> 06 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-success mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-xl-12">
-                    <div class="card card-block card-stretch card-height files-table">
-                        <div class="card-header d-flex justify-content-between">
-                            <div class="header-title">
-                                <h4 class="card-title">Files</h4>
-                            </div>
-                            <div class="card-header-toolbar d-flex align-items-center">
-                                <a href="./page-files.html" class=" view-more">View All</a>
-                            </div>
-                        </div>
-                        <div class="card-body pt-0">
-                            <div class="table-responsive">
-                                <table class="table mb-0 table-borderless tbl-server-info">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Members</th>
-                                            <th scope="col">Last Edit</th>
-                                            <th scope="col">Size</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="icon-small bg-danger rounded mr-3">
-                                                        <i class="ri-file-excel-line"></i>
-                                                    </div>
-                                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="Weekly-report.pdf" style="cursor: pointer;">Weekly-report.pdf</div>
-                                                </div>
-                                            </td>
-                                            <td>Me</td>
-                                            <td>jan 21, 2020 me</td>
-                                            <td>02 MB</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="dropdown-toggle" id="dropdownMenuButton6" data-toggle="dropdown">
-                                                        <i class="ri-more-fill"></i>
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton6">
-                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="card card-block card-stretch card-height  plan-bg">
-                        <div class="card-body">
-                            <h4 class="mb-3 text-white">Unlock Your plan</h4>
-                            <p>Expanded Storage, Access To<br> More Features On File Storage</p>
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-6 go-white ">
-                                    <a href="#" class="btn d-inline-block mt-5">Go Premium</a>
-                                </div>
-                                <div class="col-6">
-                                    <img src="assets/images/layouts/mydrive/lock-bg.png" class="img-fluid" alt="image1">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="btn">
+                    <a href="<?php echo BASE_URL . 'auth/login' ?>"><i class="las la-sign-in-alt"></i> Log in</a>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </header>
+        <!-- TOP HEADER END FORM HERE  -->
 
-<?php include('common/footer.php') ?>
+        <!-- NAVBAR START FORM HERE  -->
+    </section>
+    <section>
+        <nav>
+            <li><a href="#start">What is File Storage</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+        </nav>
+    </section>
+    <!-- NAVBAR END FORM HERE  -->
+
+    <!-- FEATURES SECTION START FROM HERE -->
+    <section>
+        <div class="features-section">
+            <div class="features-img">
+                <img src="./assets/images/svg/undraw_secure_files_re_6vdh.svg" alt="">
+            </div>
+            <div class="features-content">
+                <h5>Secure Cloud Storage and Communication
+                    Privacy by Design</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequatur, veritatis ipsum deserunt amet accusamus
+                    quos officiis incidunt odit provident modi laudantium
+                    quibusdam molestias excepturi sed labore impedit
+                    temporibus magnam facilis!</p>
+            </div>
+        </div>
+        <div class="features-section-2">
+            <div class="features-content">
+                <h5>Secure Cloud Storage and Communication
+                    Privacy by Design</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequatur, veritatis ipsum deserunt amet accusamus
+                    quos officiis incidunt odit provident modi laudantium
+                    quibusdam molestias excepturi sed labore impedit
+                    temporibus magnam facilis!</p>
+            </div>
+            <div class="features-img">
+                <img src="./assets/images/svg/Secure Server-amico.svg" alt="">
+            </div>
+        </div>
+
+        <div class="features-section">
+            <div class="features-img">
+                <img src="./assets/images/svg/Sharing articles-amico.svg" alt="">
+            </div>
+            <div class="features-content">
+                <h5>Highly secure server</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequatur, veritatis ipsum deserunt amet accusamus
+                    quos officiis incidunt odit provident modi laudantium
+                    quibusdam molestias excepturi sed labore impedit
+                    temporibus magnam facilis!</p>
+            </div>
+        </div>
+        <div class="features-section-2">
+            <div class="features-content">
+                <h5>Easy and Fast Transfer Files</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequatur, veritatis ipsum deserunt amet accusamus
+                    quos officiis incidunt odit provident modi laudantium
+                    quibusdam molestias excepturi sed labore impedit
+                    temporibus magnam facilis!</p>
+            </div>
+            <div class="features-img">
+                <img src="./assets/images/svg/Transfer files-amico.svg" alt="">
+            </div>
+        </div>
+
+        <div class="features-section">
+            <div class="features-img">
+                <img src="./assets/images/svg/Fast loading-amico.svg" alt="">
+            </div>
+            <div class="features-content">
+                <h5>Fast Downloding</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequatur, veritatis ipsum deserunt amet accusamus
+                    quos officiis incidunt odit provident modi laudantium
+                    quibusdam molestias excepturi sed labore impedit
+                    temporibus magnam facilis!</p>
+            </div>
+        </div>
+        <div class="features-section-2">
+            <div class="features-content">
+                <h5>Secure Cloud Storage and Communication
+                    Privacy by Design</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consequatur, veritatis ipsum deserunt amet accusamus
+                    quos officiis incidunt odit provident modi laudantium
+                    quibusdam molestias excepturi sed labore impedit
+                    temporibus magnam facilis!</p>
+            </div>
+            <div class="features-img">
+                <img src="./assets/images/svg/Uploading-amico.svg" alt="">
+            </div>
+        </div>
+    </section>
+    <!-- PRICING SECTION START FROM HERE ! -->
+    <section id="pricing">
+        <div class="pricing-section">
+            <div class="pricing-heading-title">
+                <h1>Looking for a cloud storage alternative? Try MEGA.</h1>
+                <h3>Take full advantage of MEGA with a Pro account.</h3>
+                <h5>Annual subscription is 16% cheaper than 12 monthly payments</h5>
+            </div>
+            <div class="togle">
+
+            </div>
+            <div class="card-wrapper">
+                <div class="price-card">
+                    <div class="price-card-content">
+                        <h2>Starter</h2>
+                        <p>Get started with secure file storage.</p>
+                        <h3>Rs. 6,000/-</h3>
+                        <p>NPR <br> /year <br></p>
+                        <a href="#">Get Pro Starter</a>
+                    </div>
+                    <div class="packages">
+                        <ul>
+                            <li><strong>2 TB Storage</strong></li>
+                            <li><strong>5 TB Transfer</strong></li>
+                            <li>Share easily and privately</li>
+                            <li>end large files securely</li>
+                            <li>Auto backup</li>
+                            <li>File versioning</li>
+                            <li>Private team messaging</li>
+                            <li>Custom Rubbish Bin cleaner</li>
+                            <li>ecure video conferencing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="price-card">
+                    <div class="price-card-content">
+                        <h2>Basic</h2>
+                        <p>Get started with secure file storage.</p>
+                        <h3>Rs. 8,000/-</h3>
+                        <p>NPR <br> /year <br></p>
+                        <a href="#">Get Pro Starter</a>
+                    </div>
+                    <div class="packages">
+                        <ul>
+                            <li><strong>4 TB Storage</strong></li>
+                            <li><strong>10 TB Transfer</strong></li>
+                            <li>Share easily and privately</li>
+                            <li>end large files securely</li>
+                            <li>Auto backup</li>
+                            <li>File versioning</li>
+                            <li>Private team messaging</li>
+                            <li>Custom Rubbish Bin cleaner</li>
+                            <li>ecure video conferencing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="price-card">
+                    <div class="price-card-content">
+                        <h2>Premium</h2>
+                        <p>Get started with secure file storage.</p>
+                        <h3>Rs. 10,000/-</h3>
+                        <p>NPR <br> /year <br></p>
+                        <a href="#">Get Pro Starter</a>
+                    </div>
+                    <div class="packages">
+                        <ul>
+                            <li><strong>6 TB GB Storage</strong></li>
+                            <li><strong>15 TB Transfer</strong></li>
+                            <li>Share easily and privately</li>
+                            <li>end large files securely</li>
+                            <li>Auto backup</li>
+                            <li>File versioning</li>
+                            <li>Private team messaging</li>
+                            <li>Custom Rubbish Bin cleaner</li>
+                            <li>ecure video conferencing</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PLAN SECTION END FORM HERE  -->
+
+    <!-- FOOTER SECTION START FROM HERE -->
+    <div id="footer">
+        <div class="footer-content about-section">
+            <a href="<?php echo BASE_URL ?>">
+                File Storage
+            </a>
+            <h3 class="footer-title">The Team Nested</h3>
+            <h4 class="footer-title">User-Encrypted Cloud Services</h4>
+            <h4 class="footer-title">© File Storage <?php echo date('Y') ?> All rights reserved</h5>
+                <div class="footer-content social-media">
+                    <h1 class="follow-us-heading">FOLLOW US</h1>
+                    <ul>
+                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="lab la-linkedin-in"></i></i></a></li>
+                        <li><a href="#"><i class="lab la-github"></i></a></li>
+                        <li><a href="#"><i class="lab la-instagram"></i></a></li>
+                        <li><a href="#"><i class="lab la-twitter"></i></a></li>
+                        <li><a href="#"><i class="lab la-youtube"></i></a></li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class="quick-links">
+            <h1 class="heading-title">Quick Links</h1>
+            <div class="footer-content links">
+                <a href="#">What is File Storage</a>
+                <a href="#">Features</a>
+                <a href="#">Business</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+        </div>
+        <div class="support">
+            <h1 class="heading-title">Support</h1>
+            <div class="footer-content links">
+                <a href="#">Help Center</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Get Support</a>
+            </div>
+        </div>
+
+        <div class="legal">
+            <h1 class="heading-title">Legal</h1>
+            <div class="footer-content links">
+                <a href="#">Terms of Services</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Takedown Guidance Policy</a>
+            </div>
+        </div>
+
+        <div class="payment-gateway">
+            <h1 class="heading-title">We Accept</h1>
+            <div class="payment-gateway-links">
+                <img src="./assets/images/Esewa-Remittance-Payment.png" alt="">
+                <img src="./assets/images/Khalti_Digital_Wallet_Logo.png" alt="">
+            </div>
+        </div>
+        <!-- FOOTER SECTION END FROM HERE -->
+
+</body>
+
+</html>

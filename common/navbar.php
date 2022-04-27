@@ -3,9 +3,8 @@
         <nav class="navbar navbar-expand-lg navbar-light p-0">
             <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                 <i class="ri-menu-line wrapper-menu"></i>
-                <a href="../index.php" class="header-logo">File Storage
-                    <!-- <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
-                    <img src="assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo" alt="logo"> -->
+                <a href="<?php echo BASE_URL . 'dashboard' ?>" class="header-logo">
+                    File Storage
                 </a>
             </div>
             <div class="iq-search-bar device-search">
@@ -21,22 +20,22 @@
                                 </span>
                             </label>
                             <ul class="dropdown-menu">
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=pdf' ?>">
                                         <div class="item"><i class="far fa-file-pdf bg-info"></i>PDFs</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=document' ?>">
                                         <div class="item"><i class="far fa-file-alt bg-primary"></i>Documents</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=spreadsheet' ?>">
                                         <div class="item"><i class="far fa-file-excel bg-success"></i>Spreadsheet</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=presentation' ?>">
                                         <div class="item"><i class="far fa-file-powerpoint bg-danger"></i>Presentation</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=image' ?>">
                                         <div class="item"><i class="far fa-file-image bg-warning"></i>Photos & Images</div>
                                     </a></li>
-                                <li><a href="#">
+                                <li><a href="<?php echo BASE_URL . 'files?type=video' ?>">
                                         <div class="item"><i class="far fa-file-video bg-info"></i>Videos</div>
                                     </a></li>
                             </ul>
@@ -94,7 +93,9 @@
                         </li>
                         <li class="nav-item nav-icon dropdown caption-content">
                             <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="caption bg-primary line-height">P</div>
+                                <!-- <div class="caption bg-primary line-height"> -->
+                                <img src="https://ui-avatars.com/api/?name=<?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" alt="<?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" class="rounded-circle">
+                                <!-- </div> -->
                             </a>
                             <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton03">
                                 <div class="card mb-0">
@@ -107,17 +108,12 @@
                                     <div class="card-body">
                                         <div class="profile-header">
                                             <div class="cover-container text-center">
-                                                <div class="rounded-circle profile-icon bg-primary mx-auto d-block">
-                                                    P
-                                                    <a href="">
-
-                                                    </a>
-                                                </div>
+                                                <img src="https://ui-avatars.com/api/?name=<?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" alt="<?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" class="rounded-circle">
                                                 <div class="profile-detail mt-3">
-                                                    <h5><a href="app/user-profile-edit.html">Panny Marco</a></h5>
-                                                    <p>pannymarco@gmail.com</p>
+                                                    <h5><a href="#"><?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></a></h5>
+                                                    <p><?php echo $_SESSION['email'] ?></p>
                                                 </div>
-                                                <a href="auth/auth-sign-in.php" class="btn btn-primary">Sign Out</a>
+                                                <a href="<?php echo BASE_URL . 'action/logout' ?>" class="btn btn-primary">Sign Out</a>
                                             </div>
                                         </div>
                                     </div>
