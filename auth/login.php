@@ -101,7 +101,7 @@ if (isset($_SESSION['message'])) {
                         </div>
                         <button type="submit" name="sign_in" class="btn btn-primary">Sign In</button>
                         <p class="mt-3">
-                           Create an Account <a href="<?php echo BASE_URL . 'auth/register' ?>" class="text-primary">Sign Up</a>
+                           Don't have an Account? <a href="<?php echo BASE_URL . 'auth/register' ?>" class="text-primary">Sign Up</a>
                         </p>
                      </form>
                   </div>

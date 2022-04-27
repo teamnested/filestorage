@@ -60,11 +60,9 @@ if (isset($_SESSION['message'])) {
             <div class="row justify-content-center align-items-center height-self-center">
                <div class="col-md-5 col-sm-12 col-12 align-self-center">
                   <div class="sign-user_card">
-                     <!-- <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo">
-                        <img src="../assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo logo" alt="logo"> -->
                      <h3 class="mb-3">Sign Up</h3>
                      <p>Create your account.</p>
-                     <form action="<?php echo BASE_URL . 'action/register' ?>" method="POST">
+                     <form id="registerForm" action="<?php echo BASE_URL . 'action/register' ?>" method="POST">
                         <div class="row">
                            <div class="col-lg-12">
                               <?php
@@ -107,9 +105,9 @@ if (isset($_SESSION['message'])) {
                               </div>
                            </div>
                         </div>
-                        <button type="submit" name="sign_up" class="btn btn-primary">Sign Up</button>
+                        <button type="button" name="sign_up" class="btn btn-primary" id="registerBtn">Sign Up</button>
                         <p class="mt-3">
-                           Already have an Account <a href="<?php echo BASE_URL . 'auth/login' ?>" class="text-primary">Sign In</a>
+                           Already have an Account? <a href="<?php echo BASE_URL . 'auth/login' ?>" class="text-primary">Sign In</a>
                         </p>
                      </form>
                   </div>
@@ -149,6 +147,15 @@ if (isset($_SESSION['message'])) {
    <script src="../assets/js/doc-viewer.js"></script>
    <!-- app JavaScript -->
    <script src="../assets/js/app.js"></script>
+
+   <script>
+      $(document).ready(function() {
+         $('#registerBtn').click(function() {
+            $(this).prop('disabled', true);
+            $('#registerForm').submit();
+         });
+      });
+   </script>
 </body>
 
 </html>

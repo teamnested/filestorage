@@ -19,7 +19,6 @@ if (empty($firstName) || empty($lastName) || empty($email) || empty($password) |
 } else if ($password != $confirmPassword) {
    responseData('Password and Confirm Password does not match', false);
 } else {
-
    $checkEmailSql = "SELECT * FROM users WHERE email = '$email'";
    $checkEmailQuery = mysqli_query($conn, $checkEmailSql);
    $isEmailExists = mysqli_num_rows($checkEmailQuery);
@@ -40,6 +39,12 @@ if (empty($firstName) || empty($lastName) || empty($email) || empty($password) |
          $_SESSION['first_name'] = $currentUser->first_name;
          $_SESSION['last_name'] = $currentUser->last_name;
          $_SESSION['email'] = $currentUser->email;
+         $directory = '../public/storage/users' . '/' . $currentUser->id;
+         if (!file_exists($directory)) {
+            $old = umask(0);
+            echo mkdir($directory, 0777);
+            umask($old);
+         }
          sendVerificationMail($currentUser);
          responseData("Successfully Registered !");
       } else {

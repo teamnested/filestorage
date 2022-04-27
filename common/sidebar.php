@@ -40,6 +40,13 @@
                 </li>
 
                 <li class=" ">
+                    <a href="<?php echo BASE_URL . 'folders' ?>" class="">
+                        <i class="ri-folder-line iq-arrow-left"></i><span>Folders</span>
+                    </a>
+                    <ul id="page-files" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    </ul>
+                </li>
+                <li class=" ">
                     <a href="<?php echo BASE_URL . 'files' ?>" class="">
                         <i class="lar la-file-alt iq-arrow-left"></i><span>Files</span>
                     </a>
@@ -78,7 +85,7 @@
                 </span>
             </div>
             <p>75% Full - 3.9 GB Free</p>
-            <a href="#" class="btn btn-outline-primary view-more mt-4">Buy Storage</a>
+            <a href="<?php echo BASE_URL . 'khalti-test/payment.php' ?>" target="_blank" class="btn btn-outline-primary view-more mt-4">Buy Storage</a>
         </div>
         <div class="p-3"></div>
     </div>

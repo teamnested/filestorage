@@ -373,7 +373,7 @@
                             <p>Expanded Storage, Access To<br> More Features On File Storage</p>
                             <div class="row align-items-center justify-content-between">
                                 <div class="col-6 go-white ">
-                                    <a href="#" class="btn d-inline-block mt-5">Go Premium</a>
+                                    <a href="<?php echo BASE_URL . 'khalti-test/payment.php' ?>" target="_blank" class="btn d-inline-block mt-5">Go Premium</a>
                                 </div>
                                 <div class="col-6">
                                     <img src="assets/images/layouts/mydrive/lock-bg.png" class="img-fluid" alt="image1">

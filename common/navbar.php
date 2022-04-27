@@ -93,7 +93,9 @@
                         </li>
                         <li class="nav-item nav-icon dropdown caption-content">
                             <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="caption bg-primary line-height"><i class="las la-user"></i></div>
+                                <!-- <div class="caption bg-primary line-height"> -->
+                                <img src="https://ui-avatars.com/api/?name=<?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" alt="<?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" class="rounded-circle">
+                                <!-- </div> -->
                             </a>
                             <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton03">
                                 <div class="card mb-0">
@@ -106,12 +108,7 @@
                                     <div class="card-body">
                                         <div class="profile-header">
                                             <div class="cover-container text-center">
-                                                <div class="rounded-circle profile-icon bg-primary mx-auto d-block">
-                                                    <i class="las la-user"></i>
-                                                    <a href="">
-
-                                                    </a>
-                                                </div>
+                                                <img src="https://ui-avatars.com/api/?name=<?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" alt="<?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" class="rounded-circle">
                                                 <div class="profile-detail mt-3">
                                                     <h5><a href="#"><?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></a></h5>
                                                     <p><?php echo $_SESSION['email'] ?></p>

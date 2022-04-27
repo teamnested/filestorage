@@ -1,1 +1,4 @@
 /vendor/
+/public/storage/
+/khalti-test/
+/config/config.php

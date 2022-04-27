@@ -40,7 +40,7 @@ include 'config/config.php';
             <li><a href="#start">What is File Storage</a></li>
             <li><a href="#">Features</a></li>
             <li><a href="#">Business</a></li>
-            <li><a href="#">Pricing</a></li>
+            <li><a href="#pricing">Pricing</a></li>
         </nav>
     </section>
     <!-- NAVBAR END FORM HERE  -->
@@ -132,7 +132,7 @@ include 'config/config.php';
         </div>
     </section>
     <!-- PRICING SECTION START FROM HERE ! -->
-    <section>
+    <section id="pricing">
         <div class="pricing-section">
             <div class="pricing-heading-title">
                 <h1>Looking for a cloud storage alternative? Try MEGA.</h1>
@@ -245,7 +245,7 @@ include 'config/config.php';
                 <a href="#">What is File Storage</a>
                 <a href="#">Features</a>
                 <a href="#">Business</a>
-                <a href="#">Pricing</a>
+                <a href="#pricing">Pricing</a>
             </div>
         </div>
         <div class="support">
