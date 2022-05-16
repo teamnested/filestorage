@@ -8,11 +8,15 @@
                 </ul>
             </div>
             <div class="col-lg-6 text-right">
-                Copyright 2021 - <?php echo date('Y') ?> <a href="<?php echo BASE_URL.'dashboard'?>">File Storage</a> All Rights Reserved.
+                Copyright 2021 - <?php echo date('Y') ?> <a href="<?php echo BASE_URL . 'dashboard' ?>">File Storage</a> All Rights Reserved.
             </div>
         </div>
     </div>
 </footer>
+
+<?php include 'common/modals/create-folder.php'; ?>
+<?php include 'common/modals/upload-file.php'; ?>
+
 <!-- Backend Bundle JavaScript -->
 <script src="assets/js/backend-bundle.min.js"></script>
 
@@ -43,6 +47,21 @@
 <script src="assets/js/doc-viewer.js"></script>
 <!-- app JavaScript -->
 <script src="assets/js/app.js"></script>
+
+<script>
+    $(function() {
+        <?php
+        if (isset($_SESSION['is_folder_created'])) :
+            if (!$_SESSION['is_folder_created']) : ?>
+                $('#createFolderModal').modal('show');
+        <?php
+                unset($_SESSION['is_folder_created'], $_SESSION['message']);
+            endif;
+        endif
+        ?>
+    });
+</script>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">

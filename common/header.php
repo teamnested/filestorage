@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once './config/connection.php';
+include('helpers/common.php');
 
 if (isset($_SESSION['is_authenticated'])) {
   if (isset($_SESSION['is_verified'])) {
@@ -11,6 +12,7 @@ if (isset($_SESSION['is_authenticated'])) {
 } else {
   header('Location: ' . BASE_URL . 'auth/login');
 }
+
 ?>
 
 <!doctype html>
@@ -42,6 +44,8 @@ if (isset($_SESSION['is_authenticated'])) {
   <link rel="stylesheet" href="assets/vendor/doc-viewer/include/verySimpleImageViewer/css/jquery.verySimpleImageViewer.css">
   <!--officeToHtml-->
   <link rel="stylesheet" href="assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">
+  <!-- Custom Styles Starts from Here -->
+  <link rel="stylesheet" href="<?php echo BASE_URL . 'assets/css/custom/styles.css' ?>">
 </head>
 
 <body class="  ">
