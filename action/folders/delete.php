@@ -20,7 +20,7 @@ if (!checkFolderIfExists($userId, $slug)) {
         $_SESSION['message'] = 'Folder Deleted Successfully';
         header('Location: ' . BASE_URL . 'folders');
     } else {
-        $_SESSION['is_folder_created'] = false;
+        $_SESSION['is_folder_deleted'] = false;
         $_SESSION['message'] = 'Error Deleting Folder';
         echo "<script>window.history.back();</script>";
     }

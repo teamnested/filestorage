@@ -187,7 +187,7 @@
                                                         <i class="ri-more-2-fill"></i>
                                                     </span>
                                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton01">
-                                                        <a class="dropdown-item" href="<?php echo BASE_URL . 'action/files/delete?slug=' . $folder['slug'] ?>"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                        <a class="dropdown-item" href="<?php echo BASE_URL . 'action/files/delete?slug=' . $file['slug'] ?>"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
                                                         <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
                                                         <a class="dropdown-item" href="<?php echo $file['file_dir'] ?>" download><i class="ri-file-download-fill mr-2"></i>Download</a>
                                                     </div>

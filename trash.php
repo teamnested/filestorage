@@ -85,7 +85,9 @@
                                 <div class="card-body image-thumb">
                                     <div class="mb-4 text-center p-3 rounded iq-thumb">
                                         <div class="iq-image-overlay"></div>
-                                        <a href="#" data-load-file="file" data-title="Chat.pdf" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-5/pdf.png" class="img-fluid" alt="image1"></a>
+                                        <a href="#" data-load-file="file" data-title="<?php echo $file['file_name'] ?>" data-load-target="#resolte-contaniner" data-url="<?php echo $file['file_dir'] ?>" data-toggle="modal" data-target="#exampleModal">
+                                            <img src="<?php echo $file['image_url'] ?>" class="img-fluid" alt="image1">
+                                        </a>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h6><?php echo $file['file_name'] ?></h6>
@@ -96,7 +98,7 @@
                                                 </span>
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton05">
                                                     <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-restart-line mr-2"></i>Restore</a>
+                                                    <a class="dropdown-item" href="<?php echo BASE_URL . 'action/files/restore?slug=' . $file['slug'] ?>"><i class="ri-restart-line mr-2"></i>Restore</a>
                                                 </div>
                                             </div>
                                         </div>
