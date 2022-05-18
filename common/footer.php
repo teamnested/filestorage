@@ -18,35 +18,35 @@
 <?php include 'common/modals/upload-file.php'; ?>
 
 <!-- Backend Bundle JavaScript -->
-<script src="assets/js/backend-bundle.min.js"></script>
+<script src="<?php echo BASE_URL . 'assets/js/backend-bundle.min.js' ?>"></script>
 
 <!-- Chart Custom JavaScript -->
-<script src="assets/js/customizer.js"></script>
+<script src="<?php echo BASE_URL . 'assets/js/customizer.js' ?>"></script>
 
 <!-- Chart Custom JavaScript -->
-<script src="assets/js/chart-custom.js"></script>
+<script src="<?php echo BASE_URL . 'assets/js/chart-custom.js' ?>"></script>
 
 <!--PDF-->
-<script src="assets/vendor/doc-viewer/include/pdf/pdf.js"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/pdf/pdf.js' ?>"></script>
 <!--Docs-->
-<script src="assets/vendor/doc-viewer/include/docx/jszip-utils.js"></script>
-<script src="assets/vendor/doc-viewer/include/docx/mammoth.browser.min.js"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/docx/jszip-utils.js' ?>"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/docx/mammoth.browser.min.js' ?>"></script>
 <!--PPTX-->
-<script src="assets/vendor/doc-viewer/include/PPTXjs/js/filereader.js"></script>
-<script src="assets/vendor/doc-viewer/include/PPTXjs/js/d3.min.js"></script>
-<script src="assets/vendor/doc-viewer/include/PPTXjs/js/nv.d3.min.js"></script>
-<script src="assets/vendor/doc-viewer/include/PPTXjs/js/pptxjs.js"></script>
-<script src="assets/vendor/doc-viewer/include/PPTXjs/js/divs2slides.js"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/PPTXjs/js/filereader.js' ?>"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/PPTXjs/js/d3.min.js' ?>"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/PPTXjs/js/nv.d3.min.js' ?>"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/PPTXjs/js/pptxjs.js' ?>"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/PPTXjs/js/divs2slides.js' ?>"></script>
 <!--All Spreadsheet -->
-<script src="assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.js"></script>
-<script src="assets/vendor/doc-viewer/include/SheetJS/xlsx.full.min.js"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.js' ?>"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/SheetJS/xlsx.full.min.js' ?>"></script>
 <!--Image viewer-->
-<script src="assets/vendor/doc-viewer/include/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js' ?>"></script>
 <!--officeToHtml-->
-<script src="assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
-<script src="assets/js/doc-viewer.js"></script>
+<script src="<?php echo BASE_URL . 'assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js' ?>"></script>
+<script src="<?php echo BASE_URL . 'assets/js/doc-viewer.js' ?>"></script>
 <!-- app JavaScript -->
-<script src="assets/js/app.js"></script>
+<script src="<?php echo BASE_URL . 'assets/js/app.js' ?>"></script>
 
 <script>
     $(function() {
@@ -60,6 +60,42 @@
         endif
         ?>
     });
+
+    var config = {
+        // replace the publicKey with yours
+        "publicKey": "test_public_key_78feb4a65e62452c97de0cc179a8cf60",
+        "productIdentity": "1234567890",
+        "productName": "Dragon",
+        "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+        "paymentPreference": [
+            "KHALTI",
+            "EBANKING",
+            "MOBILE_BANKING",
+            "CONNECT_IPS",
+            "SCT",
+        ],
+        "eventHandler": {
+            onSuccess(payload) {
+                // hit merchant api for initiating verfication
+                console.log(payload);
+            },
+            onError(error) {
+                console.log(error);
+            },
+            onClose() {
+                console.log('widget is closing');
+            }
+        }
+    };
+
+    var checkout = new KhaltiCheckout(config);
+    var btn = document.querySelector("#khaltiPaymentBtn");
+    btn.onclick = function() {
+        // minimum transaction amount must be 10, i.e 1000 in paisa.
+        checkout.show({
+            amount: 1000
+        });
+    }
 </script>
 
 <!-- Modal -->

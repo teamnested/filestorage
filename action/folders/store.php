@@ -13,7 +13,7 @@ if (checkFolderIfExists($userId, $slug)) {
     $_SESSION['message'] = 'Folder already exists';
     echo "<script>window.history.back();</script>";
 } else {
-    $createdAt = strtotime(date('Y-m-d H:i:s'));
+    $createdAt = date('Y-m-d H:i:s');
     $sql = "INSERT INTO folders (user_id, name, slug, created_at, updated_at) VALUES ('$userId', '$name', '$slug', '$createdAt', '$createdAt')";
     $query = mysqli_query($conn, $sql);
     if ($query) {

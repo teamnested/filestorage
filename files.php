@@ -1,4 +1,11 @@
-<?php include('common/header.php') ?>
+<?php include('common/header.php');
+
+$fileType = '';
+if (isset($_GET['type'])) {
+    $fileType = $_GET['type'];
+}
+$files = getFiles($fileType);
+?>
 
 <div class="wrapper">
 
@@ -10,7 +17,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="d-flex align-items-center justify-content-between welcome-content mb-3">
-                        <h4>All Files</h4>
+                        <?php if ($fileType == '') { ?>
+                            <h4>All Files</h4>
+                        <?php } else { ?>
+                            <h4>Files of <strong><?php echo $fileType ?></strong></h4>
+                        <?php } ?>
                         <div class="d-flex align-items-center">
                             <div class="list-grid-toggle mr-4">
                                 <span class="icon icon-grid i-grid"><i class="ri-layout-grid-line font-size-20"></i></span>
@@ -41,50 +52,21 @@
             </div>
             <div class="icon icon-grid i-grid">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Spike.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/pdf.png" class="img-fluid" alt="image1"></a>
+                    <?php
+                    foreach ($files as $key => $file) : ?>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-block card-stretch card-height">
+                                <div class="card-body image-thumb">
+                                    <div class="mb-4 text-center p-3 rounded iq-thumb">
+                                        <div class="iq-image-overlay"></div>
+                                        <a href="#" data-title="<?php echo $file['file_name'] ?>" data-load-file="file" data-load-target="#resolte-contaniner" data-url="<?php echo $file['file_dir'] ?>" data-toggle="modal" data-target="#exampleModal">
+                                            <img src="<?php echo $file['image_url'] ?>" class="img-fluid" alt="image1"></a>
+                                    </div>
+                                    <h6><?php echo $file['file_name'] ?></h6>
                                 </div>
-                                <h6>Spike.pdf</h6>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Support.docx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/doc.png" class="img-fluid" alt="image1"></a>
-                                </div>
-                                <h6>Support.docx</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Colour.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/xlsx.png" class="img-fluid" alt="image1"></a>
-                                </div>
-                                <h6>Colour.xlsx</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Flavour.pptx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pptx" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/ppt.png" class="img-fluid" alt="image1"></a>
-                                </div>
-                                <h6>Flavour.pptx</h6>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="icon icon-grid i-list">

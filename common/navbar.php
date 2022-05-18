@@ -4,7 +4,8 @@
             <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                 <i class="ri-menu-line wrapper-menu"></i>
                 <a href="<?php echo BASE_URL . 'dashboard' ?>" class="header-logo">
-                    File Storage
+                    <img src="<?php echo BASE_URL . 'assets/images/logo.png' ?>" class="img-fluid rounded-normal light-logo" alt="logo">
+                    <img src="<?php echo BASE_URL . 'assets/images/logo-white.png' ?>" class="img-fluid rounded-normal darkmode-logo d-none" alt="logo">
                 </a>
             </div>
             <div class="iq-search-bar device-search">
