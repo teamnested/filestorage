@@ -77,7 +77,7 @@ if (isset($_SESSION['message'])) {
                            <div class="col-lg-6">
                               <div class="floating-label form-group">
                                  <input class="floating-input form-control" name="first_name" type="text" value="<?php echo @$_POST['first_name'] ?>" placeholder=" ">
-                                 <label>Full Name</label>
+                                 <label>First Name</label>
                               </div>
                            </div>
                            <div class="col-lg-6">

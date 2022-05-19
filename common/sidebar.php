@@ -1,7 +1,8 @@
 <div class="iq-sidebar  sidebar-default ">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
         <a href="<?php echo BASE_URL . 'dashboard' ?>" class="header-logo">
-            File Storage
+            <img src="<?php echo BASE_URL . 'assets/images/logo.png' ?>" class="img-fluid rounded-normal light-logo" alt="logo">
+            <img src="<?php echo BASE_URL . 'assets/images/logo-white.png' ?>" class="img-fluid rounded-normal darkmode-logo d-none" alt="logo">
         </a>
         <div class="iq-menu-bt-sidebar">
             <i class="las la-bars wrapper-menu"></i>
@@ -18,10 +19,10 @@
                 </label>
                 <ul class="dropdown-menu">
                     <li>
-                        <div class="item"><i class="ri-folder-add-line pr-3"></i>New Folder</div>
+                        <div class="item" data-toggle="modal" data-target="#createFolderModal"><i class="ri-folder-add-line pr-3"></i>New Folder</div>
                     </li>
                     <li>
-                        <div class="item"><i class="ri-file-upload-line pr-3"></i>Upload Files</div>
+                        <div class="item" data-toggle="modal" data-target="#uploadFileModal"><i class="ri-file-upload-line pr-3"></i>Upload Files</div>
                     </li>
                     <li>
                         <div class="item"><i class="ri-folder-upload-line pr-3"></i>Upload Folders</div>
@@ -54,22 +55,15 @@
                     </ul>
                 </li>
                 <li class=" ">
-                    <a href="<?php echo BASE_URL . 'recent-files' ?>" class="">
-                        <i class="las la-stopwatch iq-arrow-left"></i><span>Recent</span>
-                    </a>
-                    <ul id="page-folders" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                    </ul>
-                </li>
-                <li class=" ">
-                    <a href="<?php echo BASE_URL . 'favourite' ?>" class="">
-                        <i class="lar la-star"></i><span>Favourite</span>
-                    </a>
-                    <ul id="page-fevourite" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                    </ul>
-                </li>
-                <li class=" ">
                     <a href="<?php echo BASE_URL . 'trash' ?>" class="">
                         <i class="las la-trash-alt iq-arrow-left"></i><span>Trash</span>
+                    </a>
+                    <ul id="page-delete" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    </ul>
+                </li>
+                <li class=" ">
+                    <a href="<?php echo BASE_URL . 'plans' ?>" class="">
+                        <i class="las la-server iq-arrow-left"></i><span>Plans</span>
                     </a>
                     <ul id="page-delete" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
@@ -79,13 +73,24 @@
         </nav>
         <div class="sidebar-bottom">
             <h4 class="mb-3"><i class="las la-cloud mr-2"></i>Storage</h4>
-            <p>17.1 / 20 GB Used</p>
+            <p><?php echo getStorageDetails()['totalUsedSpace'] ?> / <?php echo getStorageDetails()['totalStorage'] ?> Used</p>
             <div class="iq-progress-bar mb-3">
-                <span class="bg-primary iq-progress progress-1" data-percent="67">
-                </span>
+                <?php if (getStorageDetails()['totalUsedSpacePercent'] < 50) : ?>
+                    <span class="bg-primary iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
+                    </span>
+                <?php elseif (getStorageDetails()['totalUsedSpacePercent'] > 50 && getStorageDetails()['totalUsedSpacePercent'] < 80) : ?>
+                    <span class="bg-warning iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
+                    </span>
+                <?php elseif (getStorageDetails()['totalUsedSpacePercent'] > 80 && getStorageDetails()['totalUsedSpacePercent'] < 90) : ?>
+                    <span class="bg-success iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
+                    </span>
+                <?php else : ?>
+                    <span class="bg-danger iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
+                    </span>
+                <?php endif; ?>
             </div>
-            <p>75% Full - 3.9 GB Free</p>
-            <a href="<?php echo BASE_URL . 'khalti-test/payment.php' ?>" target="_blank" class="btn btn-outline-primary view-more mt-4">Buy Storage</a>
+            <p><?php echo getStorageDetails()['totalUsedSpacePercent'] ?>% Full - <?php echo getStorageDetails()['freeStorage'] ?> Free</p>
+            <a href="<?php echo BASE_URL . 'plans' ?>" class="btn btn-outline-primary view-more mt-4">Buy Storage</a>
         </div>
         <div class="p-3"></div>
     </div>

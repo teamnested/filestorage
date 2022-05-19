@@ -57,7 +57,7 @@
                     <div class="card card-block card-stretch card-height iq-welcome" style="background: url(assets/images/layouts/mydrive/background.png) no-repeat scroll right center; background-color: #ffffff; background-size: contain;">
                         <div class="card-body property2-content">
                             <div class="d-flex flex-wrap align-items-center">
-                                <div class="col-lg-12 col-sm-12 p-0">
+                                <div class="col-lg-8 col-sm-8 p-0">
                                     <h3 class="mb-3">Welcome <?php echo $_SESSION['first_name']; ?></h3>
                                     <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
                                     <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
@@ -96,70 +96,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="card card-block card-stretch card-transparent ">
-                        <div class="card-header d-flex justify-content-between pb-0">
-                            <div class="header-title">
-                                <h4 class="card-title">Documents</h4>
+                <?php
+                if (getFiles('document')) : ?>
+                    <div class="col-lg-12">
+                        <div class="card card-block card-stretch card-transparent ">
+                            <div class="card-header d-flex justify-content-between pb-0">
+                                <div class="header-title">
+                                    <h4 class="card-title">Documents</h4>
+                                </div>
+                                <div class="card-header-toolbar d-flex align-items-center">
+                                    <a href="<?php echo BASE_URL . 'files?type=document' ?>" class=" view-more">View All</a>
+                                </div>
                             </div>
-                            <div class="card-header-toolbar d-flex align-items-center">
-                                <a href="<?php echo BASE_URL . 'files?type=documents' ?>" class=" view-more">View All</a>
+                        </div>
+                    </div>
+                <?php
+                endif;
+                foreach (getFiles('document') as $key => $file) : ?>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-block card-stretch card-height">
+                            <div class="card-body image-thumb">
+                                <a href="#" data-title="<?php echo $file['file_name'] ?>" data-load-file="file" data-load-target="#resolte-contaniner" data-url="<?php echo $file['file_dir'] ?>" data-toggle="modal" data-target="#exampleModal">
+                                    <div class="mb-4 text-center p-3 rounded iq-thumb">
+                                        <div class="iq-image-overlay"></div>
+                                        <img src="<?php echo $file['image_url'] ?>" class="img-fluid" alt="image1">
+                                    </div>
+                                    <h6><?php echo $file['file_name'] ?></h6>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="Terms.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="assets/images/file-type/pdf.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>Terms.pdf</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="New-one.docx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="assets/images/file-type/doc.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>New-one.docx</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb">
-                            <a href="#" data-title="Woo-box.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="assets/images/file-type/xlsx.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>Woo-box.xlsx</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body image-thumb doc-text">
-                            <a href="#" data-title="IOS-content.pptx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pptx" data-toggle="modal" data-target="#exampleModal">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <img src="assets/images/file-type/ppt.png" class="img-fluid" alt="image1">
-                                </div>
-                                <h6>IOS-content.pptx</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
                 <div class="col-lg-12">
                     <div class="card card-block card-stretch card-transparent">
                         <div class="card-header d-flex justify-content-between pb-0">
@@ -181,135 +148,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-alexa.html" class="folder">
-                                    <div class="icon-small bg-danger rounded mb-4">
-                                        <i class="ri-folder-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                <?php foreach (getFolders() as $key => $folder) : ?>
+                    <div class="col-md-6 col-sm-6 col-lg-3">
+                        <div class="card card-block card-stretch card-height">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <a href="<?php echo BASE_URL . 'folders?slug=' . $folder['slug'] ?>" class="folder">
+                                        <div class="icon-small bg-danger rounded mb-4">
+                                            <i class="ri-folder-line"></i>
+                                        </div>
+                                    </a>
+                                    <div class="card-header-toolbar">
+                                        <div class="dropdown">
+                                            <span class="dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown">
+                                                <i class="ri-more-2-fill"></i>
+                                            </span>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
+                                                <a class="dropdown-item" href="<?php echo BASE_URL . 'folders?slug=' . $folder['slug'] ?>"><i class="ri-eye-fill mr-2"></i>View</a>
+                                                <a class="dropdown-item" href="<?php echo BASE_URL . 'action/folders/delete?slug=' . $folder['slug'] ?>"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <a href="./page-alexa.html" class="folder">
-                                <h5 class="mb-2">Alexa Workshop</h5>
-                                <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-20"></i> 10 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-danger mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-android.html" class="folder">
-                                    <div class="icon-small bg-primary rounded mb-4">
-                                        <i class="ri-folder-line"></i>
-                                    </div>
+                                <a href="<?php echo BASE_URL . 'folders?slug=' . $folder['slug'] ?>" class="folder">
+                                    <h6 class="mb-2"><?php echo $folder['name'] ?></h6>
+                                    <p class="mb-2"><i class="lar la-clock text-danger mr-2 font-size-16"></i> <?php echo date('d M, Y', strtotime($folder['created_at'])) ?></p>
+                                    <p class="mb-0"><i class="las la-file-alt text-danger mr-2 font-size-16"></i> <?php echo $folder['total_files'] ?> Files</p>
                                 </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton3" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton3">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <a href="./page-android.html" class="folder">
-                                <h5 class="mb-2">Android</h5>
-                                <p class="mb-2"><i class="lar la-clock text-primary mr-2 font-size-20"></i> 09 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-primary mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-brightspot.html" class="folder">
-                                    <div class="icon-small bg-info rounded mb-4">
-                                        <i class="ri-folder-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton4" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton4">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="./page-brightspot.html" class="folder">
-                                <h5 class="mb-2">Brightspot</h5>
-                                <p class="mb-2"><i class="lar la-clock text-info mr-2 font-size-20"></i> 07 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-info mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-3">
-                    <div class="card card-block card-stretch card-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a href="./page-ionic.html" class="folder">
-                                    <div class="icon-small bg-success rounded mb-4">
-                                        <i class="ri-folder-line"></i>
-                                    </div>
-                                </a>
-                                <div class="card-header-toolbar">
-                                    <div class="dropdown">
-                                        <span class="dropdown-toggle" id="dropdownMenuButton5" data-toggle="dropdown">
-                                            <i class="ri-more-2-fill"></i>
-                                        </span>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton5">
-                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="./page-ionic.html" class="folder">
-                                <h5 class="mb-2">Ionic Chat App</h5>
-                                <p class="mb-2"><i class="lar la-clock text-success mr-2 font-size-20"></i> 06 Dec, 2020</p>
-                                <p class="mb-0"><i class="las la-file-alt text-success mr-2 font-size-20"></i> 08 Files</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
                 <div class="col-lg-12 col-xl-12">
                     <div class="card card-block card-stretch card-height files-table">
                         <div class="card-header d-flex justify-content-between">
@@ -333,55 +204,58 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="icon-small bg-danger rounded mr-3">
-                                                        <i class="ri-file-excel-line"></i>
+                                        <?php
+                                        foreach (getFiles() as $key => $file) : ?>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="icon-small bg-danger rounded mr-3">
+                                                            <i class="ri-file-excel-line"></i>
+                                                        </div>
+                                                        <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="<?php echo $file['file_dir'] ?>" data-toggle="modal" data-target="#exampleModal" data-title="Weekly-report.pdf" style="cursor: pointer;"><?php echo $file['file_name'] ?></div>
                                                     </div>
-                                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="Weekly-report.pdf" style="cursor: pointer;">Weekly-report.pdf</div>
-                                                </div>
-                                            </td>
-                                            <td>Me</td>
-                                            <td>jan 21, 2020 me</td>
-                                            <td>02 MB</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="dropdown-toggle" id="dropdownMenuButton6" data-toggle="dropdown">
-                                                        <i class="ri-more-fill"></i>
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton6">
-                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                </td>
+                                                <td>Me</td>
+                                                <td><?php echo $file['modified_date_time'] ?></td>
+                                                <td><?php echo $file['size'] ?></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <span class="dropdown-toggle" id="dropdownMenuButton6" data-toggle="dropdown">
+                                                            <i class="ri-more-fill"></i>
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton6">
+                                                            <a class="dropdown-item" href="<?php echo BASE_URL . 'action/files/delete?slug=' . $file['slug'] ?>"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                            <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                            <a class="dropdown-item" href="<?php echo $file['file_dir'] ?>"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="card card-block card-stretch card-height  plan-bg">
-                        <div class="card-body">
-                            <h4 class="mb-3 text-white">Unlock Your plan</h4>
-                            <p>Expanded Storage, Access To<br> More Features On File Storage</p>
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-6 go-white ">
-                                    <a href="<?php echo BASE_URL . 'khalti-test/payment.php' ?>" target="_blank" class="btn d-inline-block mt-5">Go Premium</a>
-                                </div>
-                                <div class="col-6">
-                                    <img src="assets/images/layouts/mydrive/lock-bg.png" class="img-fluid" alt="image1">
+                <?php if (checkPremiumPackage()) : ?>
+                    <div class="col-lg-12">
+                        <div class="card card-block card-stretch card-height  plan-bg">
+                            <div class="card-body">
+                                <h4 class="mb-3 text-white">Unlock Your plan</h4>
+                                <p>Expanded Storage, Access To<br> More Features On File Storage</p>
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-8 go-white ">
+                                        <a href="#" id="khaltiPaymentBtn" class="btn d-inline-block mt-5">Go Premium</a>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="assets/images/layouts/mydrive/lock-bg.png" class="img-fluid" alt="image1">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

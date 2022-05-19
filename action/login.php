@@ -25,7 +25,7 @@ if ($count) {
         $_SESSION['last_name'] = $result['last_name'];
         $_SESSION['email'] = $result['email'];
 
-        header('Location: ' . BASE_URL . 'dashboard.php');
+        header('Location: ' . BASE_URL . 'dashboard');
     } else {
         $_SESSION['message'] = "Invalid Credentials !";
         header('Location: ' . BASE_URL . 'auth/login');
