@@ -61,6 +61,13 @@
                     <ul id="page-delete" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                 </li>
+                <li class=" ">
+                    <a href="<?php echo BASE_URL . 'plans' ?>" class="">
+                        <i class="las la-server iq-arrow-left"></i><span>Plans</span>
+                    </a>
+                    <ul id="page-delete" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    </ul>
+                </li>
 
             </ul>
         </nav>
@@ -68,11 +75,22 @@
             <h4 class="mb-3"><i class="las la-cloud mr-2"></i>Storage</h4>
             <p><?php echo getStorageDetails()['totalUsedSpace'] ?> / <?php echo getStorageDetails()['totalStorage'] ?> Used</p>
             <div class="iq-progress-bar mb-3">
-                <span class="bg-primary iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
-                </span>
+                <?php if (getStorageDetails()['totalUsedSpacePercent'] < 50) : ?>
+                    <span class="bg-primary iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
+                    </span>
+                <?php elseif (getStorageDetails()['totalUsedSpacePercent'] > 50 && getStorageDetails()['totalUsedSpacePercent'] < 80) : ?>
+                    <span class="bg-warning iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
+                    </span>
+                <?php elseif (getStorageDetails()['totalUsedSpacePercent'] > 80 && getStorageDetails()['totalUsedSpacePercent'] < 90) : ?>
+                    <span class="bg-success iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
+                    </span>
+                <?php else : ?>
+                    <span class="bg-danger iq-progress progress-1" data-percent="<?php echo getStorageDetails()['totalUsedSpacePercent'] ?>">
+                    </span>
+                <?php endif; ?>
             </div>
             <p><?php echo getStorageDetails()['totalUsedSpacePercent'] ?>% Full - <?php echo getStorageDetails()['freeStorage'] ?> Free</p>
-            <a href="<?php echo BASE_URL . 'khalti-test/payment.php' ?>" target="_blank" class="btn btn-outline-primary view-more mt-4">Buy Storage</a>
+            <a href="<?php echo BASE_URL . 'plans' ?>" class="btn btn-outline-primary view-more mt-4">Buy Storage</a>
         </div>
         <div class="p-3"></div>
     </div>

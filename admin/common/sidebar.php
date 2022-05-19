@@ -19,6 +19,11 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a class="sidebar-link" href="<?php echo BASE_URL . 'admin/viewpackages' ?>">
+                    <i class="align-middle mr-2 fas fa-fw fa-box-open"></i> <span class="align-middle">Packages</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="<?php echo BASE_URL . 'admin/users' ?>">
                     <i class="align-middle mr-2 fas fa-fw fa-users"></i> <span class="align-middle">Users</span>
                 </a>

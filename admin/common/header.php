@@ -25,6 +25,7 @@ $userFullName = $_SESSION['admin_first_name'] . ' ' . $_SESSION['admin_last_name
             opacity: 0;
         }
     </style>
+    <link rel="stylesheet" href="<?php echo BASE_URL . 'admin/assets/css/styles.css' ?>">
     <script src="assets/js/settings.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-7"></script>
     <script>

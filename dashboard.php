@@ -238,22 +238,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="card card-block card-stretch card-height  plan-bg">
-                        <div class="card-body">
-                            <h4 class="mb-3 text-white">Unlock Your plan</h4>
-                            <p>Expanded Storage, Access To<br> More Features On File Storage</p>
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-8 go-white ">
-                                    <a href="#" id="khaltiPaymentBtn" class="btn d-inline-block mt-5">Go Premium</a>
-                                </div>
-                                <div class="col-4">
-                                    <img src="assets/images/layouts/mydrive/lock-bg.png" class="img-fluid" alt="image1">
+                <?php if (checkPremiumPackage()) : ?>
+                    <div class="col-lg-12">
+                        <div class="card card-block card-stretch card-height  plan-bg">
+                            <div class="card-body">
+                                <h4 class="mb-3 text-white">Unlock Your plan</h4>
+                                <p>Expanded Storage, Access To<br> More Features On File Storage</p>
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-8 go-white ">
+                                        <a href="#" id="khaltiPaymentBtn" class="btn d-inline-block mt-5">Go Premium</a>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="assets/images/layouts/mydrive/lock-bg.png" class="img-fluid" alt="image1">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

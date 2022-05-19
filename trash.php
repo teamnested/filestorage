@@ -118,7 +118,6 @@
                                     <h4 class="card-title">list View</h4>
                                 </div>
                                 <div class="d-flex align-items-center">
-
                                     <div class="list-grid-toggle mr-4">
                                         <span class="icon icon-grid i-grid"><i class="ri-layout-grid-line font-size-20"></i></span>
                                         <span class="icon icon-grid i-list"><i class="ri-list-check font-size-20"></i></span>

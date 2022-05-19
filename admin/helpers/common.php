@@ -286,3 +286,15 @@ function getUserNameById($userId)
     }
     return $userName;
 }
+
+function getPackages()
+{
+    global $conn;
+    $sql = "SELECT * FROM packages";
+    $query = mysqli_query($conn, $sql);
+    $packages = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+        $packages[] = $row;
+    }
+    return $packages;
+}

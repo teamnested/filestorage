@@ -213,7 +213,13 @@ function getStorageDetails($directory = null)
 {
     global $conn;
     $userId = $_SESSION['id'];
-    $totalStorage = 1 * 1024;
+    $subscriptionSql = "SELECT * FROM subscriptions WHERE user_id = $userId";
+    $subscriptionQuery = mysqli_query($conn, $subscriptionSql);
+    $packageId = mysqli_fetch_assoc($subscriptionQuery)['package_id'];
+    $packageSql = "SELECT * FROM packages WHERE id = $packageId";
+    $packageQuery = mysqli_query($conn, $packageSql);
+    $package = mysqli_fetch_assoc($packageQuery);
+    $totalStorage = $package['storage_size'];
     if ($totalStorage >= (1024 * 1024)) {
         $storageDetails['totalStorage'] = number_format($totalStorage / (1024 * 1024), 0) . ' GB';
     } else if ($totalStorage >= 1024 && $totalStorage < (1024 * 1024)) {
@@ -249,4 +255,37 @@ function getStorageDetails($directory = null)
     }
     // Get Directory Size Ends Here
     return $storageDetails;
+}
+
+function checkPremiumPackage()
+{
+    global $conn;
+    $sql = "SELECT COUNT(*) FROM packages WHERE name = 'Premium'";
+    $query = mysqli_query($conn, $sql);
+    $count = mysqli_fetch_array($query)['COUNT(*)'];
+    if ($count) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getActivePlans()
+{
+    global $conn;
+    $userId = $_SESSION['id'];
+    $sql = "SELECT * FROM packages WHERE is_active = 1";
+    $query = mysqli_query($conn, $sql);
+    $plans = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+        $row['is_subscribed'] = false;
+        $planId = $row['id'];
+        $subscriptionSql = "SELECT * FROM subscriptions WHERE user_id = '$userId' AND package_id = '$planId' ORDER BY id DESC LIMIT 1";
+        $subscriptionQuery = mysqli_query($conn, $subscriptionSql);
+        if (mysqli_num_rows($subscriptionQuery)) {
+            $row['is_subscribed'] = true;
+        }
+        $plans[] = $row;
+    }
+    return $plans;
 }
