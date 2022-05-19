@@ -52,7 +52,7 @@
                                         <tr>
                                             <th>S.N</th>
                                             <th>Name</th>
-                                            <th>Storage Size (KB)</th>
+                                            <th>Storage Size</th>
                                             <th>Price / Duration</th>
                                             <th>Action</th>
                                         </tr>
@@ -66,9 +66,9 @@
                                                 <td><?php echo $package['storage_size'] ?></td>
                                                 <?php
                                                 if ($package['price']) : ?>
-                                                    <td><?php echo $package['price'] . ' / ' . ucfirst($package['duration']) ?></td>
+                                                    <td>NPR <?php echo $package['price'] . ' / ' . $package['duration'] ?></td>
                                                 <?php else : ?>
-                                                    <td><?php echo ucfirst($package['duration']) ?></td>
+                                                    <td><?php echo $package['duration'] ?></td>
                                                 <?php endif; ?>
                                                 <td style="text-align: center;">
                                                     <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Modify</button>

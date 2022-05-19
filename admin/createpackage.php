@@ -59,7 +59,7 @@
                                                 </label>
                                                 <select class="form-control" name="validation-duration">
                                                     <option value="">Select Duration</option>
-                                                    <option value="lifetime">Life Time</option>
+                                                    <option value="Lifetime">Life Time</option>
                                                     <option value="Annum">Per Annum</option>
                                                     <option value="Semiannual">Per Semiannual</option>
                                                     <option value="Month">Per Month</option>

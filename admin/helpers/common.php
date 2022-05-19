@@ -294,6 +294,17 @@ function getPackages()
     $query = mysqli_query($conn, $sql);
     $packages = [];
     while ($row = mysqli_fetch_assoc($query)) {
+        $size = $row['storage_size'];
+        if ($size >= (1024 * 1024)) {
+            $storageSize = number_format($size / (1024 * 1024), 0);
+            $row['storage_size'] = $storageSize . ' GB';
+        } else if ($size >= 1024 && $size < (1024 * 1024)) {
+            $storageSize = number_format($size / 1024, 0);
+            $row['storage_size'] = $storageSize . ' MB';
+        } else {
+            $storageSize = number_format($size, 0);
+            $row['storage_size'] = $storageSize . ' KB';
+        }
         $packages[] = $row;
     }
     return $packages;

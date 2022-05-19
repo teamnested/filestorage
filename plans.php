@@ -18,19 +18,23 @@
                                                 <div class="icon-data"><i class="ri-star-line"></i>
                                                 </div>
                                                 <h5 class="mb-4 display-5 font-weight-bolder">
-                                                    NPR <?php echo $plan['price'] ?><small class="font-size-14 text-muted">/ <?php echo $plan['duration'] ?></small>
+                                                    <?php if ($plan['price']) : ?>
+                                                        NPR <?php echo $plan['price'] ?><small class="font-size-14 text-muted">/ <?php echo $plan['duration'] ?></small>
+                                                    <?php else : ?>
+                                                        <?php echo $plan['duration'] ?></small>
+                                                    <?php endif; ?>
                                                 </h5>
                                             </div>
                                             <h4 class="mb-3"><?php echo $plan['name'] ?></h4>
                                             <ul class="list-unstyled mb-0 pricing-list">
-                                                <li><i class="lar la-check-circle text-primary mr-2 font-size-20"></i><?php echo $plan['storage_size'] / (1024) ?> MB</li>
+                                                <li><i class="lar la-check-circle text-primary mr-2 font-size-20"></i><?php echo $plan['storage_size'] ?></li>
                                                 <?php if ($plan['price']) : ?>
                                                 <?php endif; ?>
                                             </ul>
                                             <?php if ($plan['is_subscribed']) : ?>
-                                                <a href="#" class="btn btn-secondary mt-5">Current Plan</a>
+                                                <button class="btn btn-outline-secondary mt-5">Current Plan</button>
                                             <?php else : ?>
-                                                <a href="#" id="khaltiPaymentBtn" class="btn btn-primary mt-5">Subscribe Now</a>
+                                                <button id="khaltiPaymentBtn" class="btn btn-primary mt-5">Subscribe Now</button>
                                             <?php endif; ?>
                                         </div>
                                     </div>

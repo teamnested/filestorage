@@ -241,17 +241,22 @@ function getStorageDetails($directory = null)
         $totalUsedSpace = number_format($size / (1024 * 1024), 0);
         $storageDetails['totalUsedSpace'] = $totalUsedSpace . ' GB';
         $storageDetails['totalUsedSpacePercent'] = number_format((($size / $totalStorage) * 100), 2);
-        $storageDetails['freeStorage'] = number_format($totalStorage - $storageDetails['totalUsedSpace'], 0) . ' GB';
     } else if ($size >= 1024 && $size < (1024 * 1024)) {
         $totalUsedSpace = number_format($size / 1024, 0);
         $storageDetails['totalUsedSpace'] = $totalUsedSpace . ' MB';
         $storageDetails['totalUsedSpacePercent'] = number_format((($size / $totalStorage) * 100), 2);
-        $storageDetails['freeStorage'] = number_format($totalStorage - $totalUsedSpace, 0) . ' MB';
     } else {
         $totalUsedSpace = number_format($size, 0);
-        $storageDetails['totalUsedSpace'] = number_format($size, 0) . ' KB';
-        $storageDetails['totalUsedSpacePercent'] = number_format(($size / $totalStorage) * 100, 2);
-        $storageDetails['freeStorage'] = number_format($totalStorage - $totalUsedSpace, 0) . ' KB';
+        $storageDetails['totalUsedSpace'] = $totalUsedSpace . ' KB';
+        $storageDetails['totalUsedSpacePercent'] = number_format(($size / $totalStorage), 2);
+    }
+    $freeStorage = $totalStorage - $size;
+    if ($freeStorage >= (1024 * 1024)) {
+        $storageDetails['freeStorage'] = number_format($freeStorage / (1024 * 1024), 0) . ' GB';
+    } else if ($freeStorage >= 1024 && $freeStorage < (1024 * 1024)) {
+        $storageDetails['freeStorage'] = number_format($freeStorage / 1024, 0) . ' MB';
+    } else {
+        $storageDetails['freeStorage'] = number_format($freeStorage, 0) . ' KB';
     }
     // Get Directory Size Ends Here
     return $storageDetails;
@@ -284,6 +289,17 @@ function getActivePlans()
         $subscriptionQuery = mysqli_query($conn, $subscriptionSql);
         if (mysqli_num_rows($subscriptionQuery)) {
             $row['is_subscribed'] = true;
+        }
+        $size = $row['storage_size'];
+        if ($size >= (1024 * 1024)) {
+            $storageSize = number_format($size / (1024 * 1024), 0);
+            $row['storage_size'] = $storageSize . ' GB';
+        } else if ($size >= 1024 && $size < (1024 * 1024)) {
+            $storageSize = number_format($size / 1024, 0);
+            $row['storage_size'] = $storageSize . ' MB';
+        } else {
+            $storageSize = number_format($size, 0);
+            $row['storage_size'] = $storageSize . ' KB';
         }
         $plans[] = $row;
     }
