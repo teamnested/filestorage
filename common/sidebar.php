@@ -24,9 +24,6 @@
                     <li>
                         <div class="item" data-toggle="modal" data-target="#uploadFileModal"><i class="ri-file-upload-line pr-3"></i>Upload Files</div>
                     </li>
-                    <li>
-                        <div class="item"><i class="ri-folder-upload-line pr-3"></i>Upload Folders</div>
-                    </li>
                 </ul>
             </div>
         </div>

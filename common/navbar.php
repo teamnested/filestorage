@@ -21,9 +21,11 @@
                                 </span>
                             </label>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo BASE_URL . 'files?type=pdf' ?>">
+                                <li>
+                                    <a href="<?php echo BASE_URL . 'files?type=pdf' ?>">
                                         <div class="item"><i class="far fa-file-pdf bg-info"></i>PDFs</div>
-                                    </a></li>
+                                    </a>
+                                </li>
                                 <li><a href="<?php echo BASE_URL . 'files?type=document' ?>">
                                         <div class="item"><i class="far fa-file-alt bg-primary"></i>Documents</div>
                                     </a></li>

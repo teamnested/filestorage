@@ -33,7 +33,7 @@
                                     <div class="col-sm-12">
                                         <?php
                                         if (isset($_SESSION['message'])) { ?>
-                                            <div class="alert alert-<?php echo $_SESSION['is_package_created'] ? 'success' : 'danger' ?> alert-dismissible" role="alert">
+                                            <div class="alert alert-<?php echo $_SESSION['is_package_success'] ? 'success' : 'danger' ?> alert-dismissible" role="alert">
                                                 <div class="alert-message">
                                                     <?php echo $_SESSION['message'] ?>
                                                 </div>
@@ -71,7 +71,7 @@
                                                     <td><?php echo $package['duration'] ?></td>
                                                 <?php endif; ?>
                                                 <td style="text-align: center;">
-                                                    <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Modify</button>
+                                                    <a href="<?php echo BASE_URL . 'admin/editpackage?id=' . $package['id'] ?>" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Modify</a>
                                                     <a href="#" onclick="return confirm('Are you sure you want to delete this package?')" class=" btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
                                                 </td>
                                             </tr>

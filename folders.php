@@ -92,7 +92,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($folders as $key => $folder) : ?>
+                                                <?php foreach (getFolders() as $key => $folder) : ?>
                                                     <tr>
                                                         <td>
                                                             <div class="d-flex align-items-center">
@@ -217,87 +217,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="icon-small bg-danger rounded mr-3">
-                                                                <i class="ri-file-excel-line"></i>
-                                                            </div>
-                                                            <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="alexa5.pdf" style="cursor: pointer;">Weekly Report.pdf</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Me</td>
-                                                    <td>Mar 30, 2020 Gail Forcewind</td>
-                                                    <td>10 MB</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <span class="dropdown-toggle" id="dropdownMenuButton10" data-toggle="dropdown">
-                                                                <i class="ri-more-fill"></i>
-                                                            </span>
-                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton10">
-                                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="icon-small bg-primary rounded mr-3">
-                                                                <i class="ri-file-download-line"></i>
-                                                            </div>
-                                                            <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="alexa6.docx" style="cursor: pointer;">Milestone.docx</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Penny</td>
-                                                    <td>Mar 31, 2020 Penny</td>
-                                                    <td>65 MB</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <span class="dropdown-toggle" id="dropdownMenuButton11" data-toggle="dropdown">
-                                                                <i class="ri-more-fill"></i>
-                                                            </span>
-                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton11">
-                                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="icon-small bg-info rounded mr-3">
-                                                                <i class="ri-file-excel-line"></i>
-                                                            </div>
-                                                            <div data-title="Alexa8.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">Training center.xlsx</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Banny</td>
-                                                    <td>Mar 30, 2020 Banny</td>
-                                                    <td>90 MB</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <span class="dropdown-toggle" id="dropdownMenuButton13" data-toggle="dropdown">
-                                                                <i class="ri-more-fill"></i>
-                                                            </span>
-                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton13">
-                                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">

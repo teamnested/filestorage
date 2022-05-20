@@ -1,3 +1,6 @@
+<?php
+$paymentSetups = getPaymentSetups();
+?>
 <footer class="iq-footer">
     <div class="container-fluid">
         <div class="row">
@@ -54,16 +57,24 @@
         if (isset($_SESSION['is_folder_created'])) :
             if (!$_SESSION['is_folder_created']) : ?>
                 $('#createFolderModal').modal('show');
-        <?php
+            <?php
                 unset($_SESSION['is_folder_created'], $_SESSION['message']);
+            endif;
+        endif;
+        if (isset($_SESSION['is_file_uploaded'])) :
+            if (!$_SESSION['is_file_uploaded']) : ?>
+                $('#uploadFileModal').modal('show');
+        <?php
+                unset($_SESSION['is_file_uploaded'], $_SESSION['message']);
             endif;
         endif
         ?>
     });
 
+    var selectedPackageId = 0;
     var config = {
         // replace the publicKey with yours
-        "publicKey": "test_public_key_78feb4a65e62452c97de0cc179a8cf60",
+        "publicKey": `<?php echo $paymentSetups['public_key'] ?>`,
         "productIdentity": "1234567890",
         "productName": "Dragon",
         "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
@@ -78,6 +89,18 @@
             onSuccess(payload) {
                 // hit merchant api for initiating verfication
                 console.log(payload);
+                let package_id = selectedPackageId;
+                $.ajax({
+                    url: '<?php echo BASE_URL . 'action/payments/verify' ?>',
+                    method: 'POST',
+                    data: {
+                        package_id
+                    },
+                    dataType: 'json',
+                }).then(function(response) {
+                    console.log(response);
+                    window.open('<?php echo BASE_URL . 'plans' ?>', '_SELF');
+                });
             },
             onError(error) {
                 console.log(error);
@@ -90,12 +113,19 @@
 
     var checkout = new KhaltiCheckout(config);
     var btn = document.querySelector("#khaltiPaymentBtn");
-    btn.onclick = function() {
-        // minimum transaction amount must be 10, i.e 1000 in paisa.
+
+    function makePayment(packageId, amount) {
+        selectedPackageId = packageId;
         checkout.show({
-            amount: 1000
+            amount: amount * 100
         });
     }
+    // btn.onclick = function() {
+    //     // minimum transaction amount must be 10, i.e 1000 in paisa.
+    //     checkout.show({
+    //         amount
+    //     });
+    // }
 </script>
 
 <!-- Modal -->

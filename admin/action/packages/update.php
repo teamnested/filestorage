@@ -4,7 +4,7 @@ session_start();
 
 require_once '../../../config/connection.php';
 
-$userId = $_SESSION['admin_id'];
+$packageId = $_GET['id'];
 $name = $_POST['validation-name'];
 $storageSize = $_POST['validation-size'];
 $price = $_POST['validation-price'];
@@ -16,15 +16,15 @@ if (!filter_var($storageSize, FILTER_VALIDATE_INT)) {
     echo "<script>window.history.back();</script>";
 } else {
     $createdAt = date('Y-m-d H:i:s');
-    $sql = "INSERT INTO packages (name, storage_size, price, duration, created_at, updated_at) VALUES ('$name', '$storageSize', '$price', '$duration', '$createdAt', '$createdAt')";
+    $sql = "UPDATE packages SET name = '$name', storage_size = '$storageSize', price = '$price', duration = '$duration', updated_at = '$createdAt' WHERE id = '$packageId'";
     $query = mysqli_query($conn, $sql);
     if ($query) {
         $_SESSION['is_package_success'] = true;
-        $_SESSION['message'] = 'Package Created Successfully';
+        $_SESSION['message'] = 'Package Updated Successfully';
         header('Location: ' . BASE_URL . 'admin/viewpackages');
     } else {
         $_SESSION['is_package_success'] = false;
-        $_SESSION['message'] = 'Error Creating Package';
+        $_SESSION['message'] = 'Error Updating Package';
         echo "<script>window.history.back();</script>";
     }
 }

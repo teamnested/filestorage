@@ -4,8 +4,8 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'filestorage');
 
-define('BASE_URL', 'http://localhost/filestorage/');
-// define('BASE_URL', 'http://192.168.1.111/filestorage/');
+// define('BASE_URL', 'http://localhost/filestorage/');
+define('BASE_URL', 'http://192.168.1.111/filestorage/');
 
 define('APP_NAME', 'File Storage');
 define('APP_DESCRIPTION', 'Store and Explore Your Files');

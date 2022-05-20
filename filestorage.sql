@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2022 at 06:03 PM
+-- Generation Time: May 20, 2022 at 08:58 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -70,12 +70,12 @@ INSERT INTO `files` (`id`, `user_id`, `folder_id`, `name`, `slug`, `type`, `crea
 (1, 1, 2, 'restroms', 'restroms', 'jpg', '2022-05-01 12:01:56', '2022-05-01 12:02:00', NULL),
 (2, 1, 2, 'Alaka Cake', 'alaka-cake', 'jpg', '2022-05-02 18:15:00', '2022-05-03 12:02:23', NULL),
 (3, 1, 2, 'BalanceSheet', 'balancesheet', 'xlsx', '2022-05-04 18:15:00', '2022-05-05 12:02:34', NULL),
-(4, 1, 2, 'File Storage Project Proposal', 'file-storage-project-proposal', 'pdf', '2022-05-07 12:02:38', '2022-05-07 12:02:41', NULL),
 (5, 1, 2, 'File Storage Presentation', 'file-storage-presentation', 'pptx', '2022-05-09 12:02:44', '2022-05-09 12:02:51', NULL),
 (7, 2, 4, 'daddys-logo', 'daddys-logo', 'png', '2022-05-18 08:13:41', '2022-05-18 08:13:41', NULL),
-(9, 2, 5, 'default', 'default', 'png', '2022-05-18 10:47:48', '2022-05-18 10:47:48', '2022-05-18 16:01:38'),
+(9, 2, 5, 'default', 'default', 'png', '2022-05-18 10:47:48', '2022-05-18 10:47:48', NULL),
 (10, 2, 4, 'restroms', 'restroms', 'jpg', '2022-05-18 10:48:40', '2022-05-18 10:48:40', NULL),
-(11, 1, 3, 'support-app', 'support-app', 'apk', '2022-05-19 13:06:53', '2022-05-19 13:06:53', NULL);
+(12, 1, 0, 'File Storage Project Proposal', 'file-storage-project-proposal', 'docx', '2022-05-19 18:13:25', '2022-05-19 18:13:25', NULL),
+(13, 1, 0, 'Cloud Storage Proposal Gantt Chart', 'cloud-storage-proposal-gantt-chart', 'xlsx', '2022-05-19 18:23:58', '2022-05-19 18:23:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -126,8 +126,31 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`id`, `name`, `storage_size`, `price`, `duration`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Free', '10240', '0', 'Lifetime', 1, '2022-05-19 06:45:56', '2022-05-19 06:45:56'),
-(2, 'Basic', '512000', '500', 'Semiannual', 1, '2022-05-19 06:46:18', '2022-05-19 06:46:18');
+(1, 'Free', '10240', '0', 'Lifetime', 1, '2022-05-19 06:45:56', '2022-05-20 04:21:49'),
+(2, 'Basic', '102400', '100', 'Semiannual', 1, '2022-05-19 06:46:18', '2022-05-19 21:35:44'),
+(3, 'Premium', '307200', '200', 'Annum', 1, '2022-05-19 21:36:59', '2022-05-19 21:36:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_setups`
+--
+
+CREATE TABLE `payment_setups` (
+  `id` int(11) NOT NULL,
+  `name` varchar(191) NOT NULL,
+  `secret_key` varchar(191) NOT NULL,
+  `public_key` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment_setups`
+--
+
+INSERT INTO `payment_setups` (`id`, `name`, `secret_key`, `public_key`, `created_at`, `updated_at`) VALUES
+(1, 'Khalti', 'test_secret_key_97de68f6fd214917872234057cefeb1d', 'test_public_key_78feb4a65e62452c97de0cc179a8cf60', '2022-05-19 19:19:17', '2022-05-20 04:23:03');
 
 -- --------------------------------------------------------
 
@@ -149,7 +172,10 @@ CREATE TABLE `subscriptions` (
 --
 
 INSERT INTO `subscriptions` (`id`, `user_id`, `package_id`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, '2022-05-19 06:26:47', '2022-05-19 06:26:47');
+(1, 1, 1, 1, '2022-05-19 06:26:47', '2022-05-20 05:37:46'),
+(2, 2, 1, 1, '2022-05-19 06:26:47', '2022-05-19 21:46:43'),
+(3, 3, 1, 1, '2022-05-19 20:26:07', '2022-05-19 20:26:07'),
+(16, 4, 1, 1, '2022-05-19 20:26:07', '2022-05-19 20:26:07');
 
 -- --------------------------------------------------------
 
@@ -209,6 +235,12 @@ ALTER TABLE `packages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payment_setups`
+--
+ALTER TABLE `payment_setups`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
@@ -234,7 +266,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `folders`
@@ -246,19 +278,25 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `payment_setups`
+--
+ALTER TABLE `payment_setups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

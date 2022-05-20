@@ -31,10 +31,18 @@
                                                 <?php if ($plan['price']) : ?>
                                                 <?php endif; ?>
                                             </ul>
-                                            <?php if ($plan['is_subscribed']) : ?>
-                                                <button class="btn btn-outline-secondary mt-5">Current Plan</button>
-                                            <?php else : ?>
-                                                <button id="khaltiPaymentBtn" class="btn btn-primary mt-5">Subscribe Now</button>
+                                            <?php if ($plan['is_subscribed']) :
+                                                if ($plan['is_subscription_active']) : ?>
+                                                    <button id="currentPlan" class="btn btn-outline-secondary mt-5">Current Plan</button>
+                                                    <?php
+                                                    if ($plan['can_unsubscribe']) : ?>
+                                                        <a href="<?php echo BASE_URL . 'action/plans/unsubscribe.php?packageId=' . $plan['id'] ?>" class="btn btn-danger mt-5">Unsubscribe</a>
+                                                    <?php endif;
+                                                else : ?>
+                                                    <button id="currentPlan" class="btn btn-outline-secondary mt-5">Default Plan</button>
+                                                <?php endif;
+                                            else : ?>
+                                                <button onclick="makePayment(<?php echo $plan['id'] . ',' . $plan['price'] ?>)" data-packageid="<?php echo $plan['id'] ?>" class="btn btn-primary mt-5">Subscribe Now</button>
                                             <?php endif; ?>
                                         </div>
                                     </div>

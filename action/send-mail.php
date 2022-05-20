@@ -65,7 +65,7 @@ Please click the button below to verify your email address:<br />
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'mailto.minicloudstorage@gmail.com';
-        $mail->Password = 'xccsnkwbhtccvalj';
+        $mail->Password = 'rlwrofiaevnrvvrp';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 

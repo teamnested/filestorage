@@ -11,6 +11,16 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
+                            <?php
+                            if (isset($_SESSION['is_file_uploaded'])) :
+                                if (!$_SESSION['is_file_uploaded']) : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <div class="iq-alert-text"><?php echo $_SESSION['message'] ?></div>
+                                    </div>
+                            <?php endif;
+                            endif ?>
+                        </div>
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Select Folder</label>
                                 <select class="form-control" name="folder_id">

@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="header">
                     <h1 class="header-title">
-                        Manage Folders
+                        Manage Subscriptions
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo BASE_URL . 'admin/dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Folders</li>
+                            <li class="breadcrumb-item active" aria-current="page">Subscriptions</li>
                         </ol>
                     </nav>
                 </div>
@@ -20,34 +20,40 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Manage Folders</h5>
+                                <h5 class="card-title mb-0">
+                                    <span>Manage Subscriptions</span>
+                                </h5>
                             </div>
                             <div class="card-body">
                                 <table id="datatables-buttons" class="table table-striped" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>S.N</th>
-                                            <th>Name</th>
-                                            <th>Total Files</th>
-                                            <th>Creator</th>
+                                            <th>User Name</th>
+                                            <th>Package Name</th>
+                                            <th>Storage Size</th>
+                                            <th>Price / Duration</th>
+                                            <th>Subscribed On</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach (getFolders() as $key => $folder) : ?>
+                                        foreach (getSubscriptions() as $key => $subscription) : ?>
                                             <tr>
                                                 <td><?php echo $key + 1 ?></td>
-                                                <td><?php echo $folder['name'] ?></td>
-                                                <td><?php echo $folder['total_files'] ?></td>
-                                                <td><?php echo $folder['creator'] ?></td>
+                                                <td><?php echo $subscription['user_name'] ?></td>
+                                                <td><?php echo $subscription['package_name'] ?></td>
+                                                <td><?php echo $subscription['storage_size'] ?></td>
+                                                <td><?php echo $subscription['duration'] ?></td>
+                                                <td><?php echo $subscription['subscribed_on'] ?></td>
                                                 <td>
                                                     <?php
-                                                    if ($folder['deleted_at'] == NULL) : ?>
-                                                        <span class="badge badge-pill badge-success">Available</span>
+                                                    if ($subscription['is_active']) : ?>
+                                                        <span class="badge badge-pill badge-success">Active</span>
                                                     <?php else : ?>
-                                                        <span class="badge badge-pill badge-danger">Deleted</span>
-                                                    <?php endif ?>
+                                                        <span class="badge badge-pill badge-danger">Inactive</span>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -55,9 +61,11 @@
                                     <tfoot>
                                         <tr>
                                             <th>S.N</th>
-                                            <th>Name</th>
-                                            <th>Total Files</th>
-                                            <th>Creator</th>
+                                            <th>User Name</th>
+                                            <th>Package Name</th>
+                                            <th>Storage Size</th>
+                                            <th>Price / Duration</th>
+                                            <th>Subscribed On</th>
                                             <th>Status</th>
                                         </tr>
                                     </tfoot>

@@ -5,18 +5,23 @@ session_start();
 require_once '../../config/connection.php';
 require '../../helpers/common.php';
 
-$folderId = $_POST['folder_id'];
 $name = $_FILES['file']['name'];
 $userId = $_SESSION['id'];
-$folderSlug = getFolderSlugById($folderId);
-$directory = '../../public/storage/users' . '/' . $userId . '/' . $folderSlug . '/';
+if (isset($_POST['folder_id'])) {
+    $folderId = $_POST['folder_id'];
+    $folderSlug = getFolderSlugById($folderId);
+    $directory = '../../public/storage/users' . '/' . $userId . '/' . $folderSlug . '/';
+} else {
+    $folderId = 0;
+    $directory = '../../public/storage/users' . '/' . $userId . '/';
+}
 $fileName = explode('.', $name)[0];
 $fileType = explode('.', $name)[1];
 $fileSlug = str_replace(' ', '-', strtolower($fileName));
 $fileFullName = $fileSlug . '.' . $fileType;
 $target_file = $directory . basename($fileFullName);
 
-if (checkFileIfExists($userId, $fileSlug)) {
+if (checkFileIfExists($userId, $folderId, $fileSlug)) {
     $_SESSION['is_file_uploaded'] = false;
     $_SESSION['message'] = 'File already exists';
     echo "<script>window.history.back();</script>";

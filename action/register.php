@@ -12,6 +12,8 @@ $hash = md5($otp);
 
 if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword)) {
    responseData("All fields are required !", false);
+} else if (filter_var($firstName, FILTER_VALIDATE_INT) || filter_var($lastName, FILTER_VALIDATE_INT)) {
+   responseData("Name must be a string !", false);
 } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
    responseData("Invalid Email !", false);
 } else if (strlen($password) < 8) {
@@ -25,8 +27,9 @@ if (empty($firstName) || empty($lastName) || empty($email) || empty($password) |
    if ($isEmailExists) {
       responseData("Email Already Exists !", false);
    } else {
+      $createdAt = date('Y-m-d H:i:s');
       $password = password_hash($password, PASSWORD_DEFAULT);
-      $sql = "INSERT INTO users(first_name, last_name, email, password, otp, hash) values ('$firstName', '$lastName', '$email', '$password', '$otp', '$hash')";
+      $sql = "INSERT INTO users(first_name, last_name, email, password, otp, hash, created_at, updated_at) values ('$firstName', '$lastName', '$email', '$password', '$otp', '$hash', '$createdAt', '$createdAt')";
       $query = mysqli_query($conn, $sql);
 
       if ($query) {
@@ -42,9 +45,10 @@ if (empty($firstName) || empty($lastName) || empty($email) || empty($password) |
          $directory = '../public/storage/users' . '/' . $currentUser->id;
          if (!file_exists($directory)) {
             $old = umask(0);
-            echo mkdir($directory, 0777);
+            mkdir($directory, 0777);
             umask($old);
          }
+         $subscriptionSqlQuery = mysqli_query($conn, "INSERT INTO subscriptions(user_id, package_id, created_at, updated_at) VALUES('$currentUser->id', 1, '$createdAt', '$createdAt')");
          sendVerificationMail($currentUser);
          responseData("Successfully Registered !");
       } else {

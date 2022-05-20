@@ -96,13 +96,19 @@ function getFiles($fileType = null)
     $files = [];
     while ($row = mysqli_fetch_assoc($query)) {
         $userId = $row['user_id'];
-        $folderSlug = getFolderSlugById($row['folder_id']);
         if ($row['type'] == 'pptx') {
             $imageUrl = BASE_URL . 'assets/images/file-type/ppt.png';
         } else {
             $imageUrl = BASE_URL . 'assets/images/file-type/' . $row['type'] . '.png';
         }
-        $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        if ($row['folder_id']) {
+            $row['folder_name'] = getFolderNameById($row['folder_id']);
+            $folderSlug = getFolderSlugById($row['folder_id']);
+            $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        } else {
+            $row['folder_name'] = '-';
+            $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $row['slug'] . '.' . $row['type'];
+        }
         if ($row['type'] == 'jpg' || $row['type'] == 'jpeg' || $row['type'] == 'png' || $row['type'] == 'gif') {
             $row['image_url'] = $fileDirectory;
         } else {
@@ -139,13 +145,17 @@ function getTrashFiles($fileType = null)
     $files = [];
     while ($row = mysqli_fetch_assoc($query)) {
         $userId = $row['user_id'];
-        $folderSlug = getFolderSlugById($row['folder_id']);
         if ($row['type'] == 'pptx') {
             $imageUrl = BASE_URL . 'assets/images/file-type/ppt.png';
         } else {
             $imageUrl = BASE_URL . 'assets/images/file-type/' . $row['type'] . '.png';
         }
-        $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        if ($row['folder_id']) {
+            $folderSlug = getFolderSlugById($row['folder_id']);
+            $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        } else {
+            $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $row['slug'] . '.' . $row['type'];
+        }
         if ($row['type'] == 'jpg' || $row['type'] == 'jpeg' || $row['type'] == 'png' || $row['type'] == 'gif') {
             $row['image_url'] = $fileDirectory;
         } else {
@@ -251,6 +261,18 @@ function countTotalUsers()
     return $totalUsers;
 }
 
+function countTotalPackages()
+{
+    global $conn;
+    $sql = "SELECT COUNT(*) FROM packages";
+    $query = mysqli_query($conn, $sql);
+    $totalPackages = 0;
+    if (mysqli_num_rows($query)) {
+        $totalPackages = mysqli_fetch_array($query)['COUNT(*)'];
+    }
+    return $totalPackages;
+}
+
 function countTotalFolders()
 {
     global $conn;
@@ -308,4 +330,50 @@ function getPackages()
         $packages[] = $row;
     }
     return $packages;
+}
+
+function getPaymentSetups()
+{
+    global $conn;
+    $sql = "SELECT * FROM payment_setups ORDER BY id DESC LIMIT 1";
+    $query = mysqli_query($conn, $sql);
+    $paymentSetups = mysqli_fetch_assoc($query);
+    return $paymentSetups;
+}
+
+function getPackageById($id)
+{
+    global $conn;
+    $sql = "SELECT * FROM packages WHERE id = '$id'";
+    $query = mysqli_query($conn, $sql);
+    $package = mysqli_fetch_assoc($query);
+    return $package;
+}
+
+function getSubscriptions()
+{
+    global $conn;
+    $sql = "SELECT * FROM subscriptions ORDER BY id DESC";
+    $query = mysqli_query($conn, $sql);
+    $subscriptions = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+        $row['user_name'] = getUserNameById($row['user_id']);
+        $packageData = getPackageById($row['package_id']);
+        $row['package_name'] = $packageData['name'];
+        $size = $packageData['storage_size'];
+        if ($size >= (1024 * 1024)) {
+            $storageSize = number_format($size / (1024 * 1024), 0);
+            $row['storage_size'] = $storageSize . ' GB';
+        } else if ($size >= 1024 && $size < (1024 * 1024)) {
+            $storageSize = number_format($size / 1024, 0);
+            $row['storage_size'] = $storageSize . ' MB';
+        } else {
+            $storageSize = number_format($size, 0);
+            $row['storage_size'] = $storageSize . ' KB';
+        }
+        $row['duration'] = $packageData['price'] . ' / ' . $packageData['duration'];
+        $row['subscribed_on'] = date('jS M, Y h:i:s A', strtotime($row['created_at']));
+        $subscriptions[] = $row;
+    }
+    return $subscriptions;
 }

@@ -59,8 +59,8 @@
                             <div class="d-flex flex-wrap align-items-center">
                                 <div class="col-lg-8 col-sm-8 p-0">
                                     <h3 class="mb-3">Welcome <?php echo $_SESSION['first_name']; ?></h3>
-                                    <p class="mb-5">You have 32 new notifications and 23 unread messages to reply</p>
-                                    <a href="#">Try Now<i class="las la-arrow-right ml-2"></i></a>
+                                    <p class="mb-5">You have <a href="<?php echo BASE_URL . 'folders' ?>"><?php echo countTotalFolders() ?> Folders</a> and <a href="<?php echo BASE_URL . 'files' ?>"><?php echo countTotalFiles() ?> Files</a> in your storage</p>
+                                    <a href="<?php echo BASE_URL . 'folders' ?>">Manage Now<i class="las la-arrow-right ml-2"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -76,21 +76,24 @@
                         <div class="card-body">
                             <ul class="list-inline p-0 mb-0 row align-items-center">
                                 <li class="col-lg-6 col-sm-6 mb-3 mb-sm-0">
-                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="Product-planning.pdf" style="cursor: pointer;" class="p-2 text-center border rounded">
-                                        <div>
-                                            <img src="assets/images/layouts/mydrive/folder-1.png" class="img-fluid mb-1" alt="image1">
+                                    <a href="<?php echo BASE_URL . 'folders' ?>">
+                                        <div style="cursor: pointer;" class="p-2 text-center border rounded">
+                                            <div>
+                                                <img src="assets/images/layouts/mydrive/folders.png" class="img-fluid mb-1" alt="Folders">
+                                            </div>
+                                            <p class="mb-0"><?php echo countTotalFolders() ?> Folders</p>
                                         </div>
-                                        <p class="mb-0">Planning</p>
-                                    </div>
+                                    </a>
                                 </li>
                                 <li class="col-lg-6 col-sm-6">
-                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="Wireframe.docx" style="cursor: pointer;" class="p-2 text-center border rounded">
-                                        <div>
-                                            <img src="assets/images/layouts/mydrive/folder-2.png" class="img-fluid mb-1" alt="image2">
+                                    <a href="<?php echo BASE_URL . 'files' ?>">
+                                        <div style="cursor: pointer;" class="p-2 text-center border rounded">
+                                            <div>
+                                                <img src="assets/images/layouts/mydrive/files.png" class="img-fluid mb-1" alt="Files">
+                                            </div>
+                                            <p class="mb-0"><?php echo countTotalFiles() ?> Files</p>
                                         </div>
-                                        <p class="mb-0">Wireframe</p>
-                                    </div>
-
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -238,7 +241,9 @@
                         </div>
                     </div>
                 </div>
-                <?php if (checkPremiumPackage()) : ?>
+                <?php
+                $premiumPackage = getPremiumPackage();
+                if ($premiumPackage) : ?>
                     <div class="col-lg-12">
                         <div class="card card-block card-stretch card-height  plan-bg">
                             <div class="card-body">
@@ -246,7 +251,7 @@
                                 <p>Expanded Storage, Access To<br> More Features On File Storage</p>
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-8 go-white ">
-                                        <a href="#" id="khaltiPaymentBtn" class="btn d-inline-block mt-5">Go Premium</a>
+                                        <button onclick="makePayment(<?php echo $premiumPackage['id'] . ',' . $premiumPackage['price'] ?>)" data-packageid="<?php echo $premiumPackage['id'] ?>" class="btn d-inline-block mt-5">Go Premium</button>
                                     </div>
                                     <div class="col-4">
                                         <img src="assets/images/layouts/mydrive/lock-bg.png" class="img-fluid" alt="image1">

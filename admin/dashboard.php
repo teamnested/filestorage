@@ -9,11 +9,11 @@
                     <h1 class="header-title">
                         Welcome back, Rahul!
                     </h1>
-                    <p class="header-subtitle">You have 24 new messages and 5 new notifications.</p>
+                    <p class="header-subtitle">You are managing <?php echo countTotalUsers() ?> Users, <?php echo countTotalPackages() ?> Packages, <?php echo countTotalFolders() ?> Folders & <?php echo countTotalFiles() ?> Files.</p>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -21,19 +21,43 @@
                                         <h5 class="card-title">Total Users</h5>
                                     </div>
 
-                                    <div class="col-auto">
-                                        <div class="avatar">
-                                            <div class="avatar-title rounded-circle bg-primary-dark">
-                                                <i class="align-middle" data-feather="users"></i>
+                                    <a href="<?php echo BASE_URL . 'admin/users' ?>">
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-primary-dark">
+                                                    <i class="align-middle" data-feather="users"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <h1 class="display-5 mt-1 mb-3"><?php echo countTotalUsers() ?></h1>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Total Packages</h5>
+                                    </div>
+
+                                    <a href="<?php echo BASE_URL . 'admin/viewpackages' ?>">
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-primary-dark">
+                                                    <i class="align-middle" data-feather="package"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <h1 class="display-5 mt-1 mb-3"><?php echo countTotalPackages() ?></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -41,19 +65,21 @@
                                         <h5 class="card-title">Total Folders</h5>
                                     </div>
 
-                                    <div class="col-auto">
-                                        <div class="avatar">
-                                            <div class="avatar-title rounded-circle bg-primary-dark">
-                                                <i class="align-middle" data-feather="folder"></i>
+                                    <a href="<?php echo BASE_URL . 'admin/folders' ?>">
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-primary-dark">
+                                                    <i class="align-middle" data-feather="folder"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <h1 class="display-5 mt-1 mb-3"><?php echo countTotalFolders() ?></h1>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -61,13 +87,15 @@
                                         <h5 class="card-title">Total Files</h5>
                                     </div>
 
-                                    <div class="col-auto">
-                                        <div class="avatar">
-                                            <div class="avatar-title rounded-circle bg-primary-dark">
-                                                <i class="align-middle" data-feather="file"></i>
+                                    <a href="<?php echo BASE_URL . 'admin/files' ?>">
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-primary-dark">
+                                                    <i class="align-middle" data-feather="file"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <h1 class="display-5 mt-1 mb-3"><?php echo countTotalFiles() ?></h1>
                             </div>

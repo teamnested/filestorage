@@ -29,10 +29,10 @@
                                             <th>S.N</th>
                                             <th>Image</th>
                                             <th>Name</th>
+                                            <th>Folder Name</th>
                                             <th>File Type</th>
                                             <th>Creator</th>
                                             <th>Status</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,7 +47,8 @@
                                                 <td>
                                                     <img src="<?php echo $file['image_url'] ?>" height="30px">
                                                 </td>
-                                                <td><?php echo $file['name'] ?></td>
+                                                <td><?php echo $file['file_name'] ?></td>
+                                                <td><?php echo $file['folder_name'] ?></td>
                                                 <td><?php echo $file['type'] ?></td>
                                                 <td><?php echo $file['creator'] ?></td>
                                                 <td>
@@ -58,10 +59,6 @@
                                                         <span class="badge badge-pill badge-danger">Deleted</span>
                                                     <?php endif ?>
                                                 </td>
-                                                <td style="text-align: center;">
-                                                    <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Modify</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
-                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -70,10 +67,10 @@
                                             <th>S.N</th>
                                             <th>Image</th>
                                             <th>Name</th>
+                                            <th>Folder Name</th>
                                             <th>File Type</th>
                                             <th>Creator</th>
                                             <th>Status</th>
-                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>

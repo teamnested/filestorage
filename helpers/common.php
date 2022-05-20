@@ -12,10 +12,10 @@ function checkFolderIfExists($userId, $slug)
     }
 }
 
-function checkFileIfExists($userId, $slug)
+function checkFileIfExists($userId, $folderId, $slug)
 {
     global $conn;
-    $sql = "SELECT * FROM files WHERE user_id = '$userId' AND slug = '$slug'";
+    $sql = "SELECT * FROM files WHERE user_id = '$userId' AND folder_id = '$folderId' AND slug = '$slug'";
     $query = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($query);
     if ($count > 0) {
@@ -78,6 +78,9 @@ function getFiles($fileType = null)
     $userId = $_SESSION['id'];
     $sql = "SELECT * FROM files WHERE user_id = '$userId' AND deleted_at IS NULL";
     if ($fileType != null) {
+        if ($fileType == 'android') {
+            $sql .= " AND type = 'apk'";
+        }
         if ($fileType == 'image') {
             $sql .= " AND type = 'jpg' OR type = 'png' OR type = 'jpeg'";
         } else if ($fileType == 'video') {
@@ -95,13 +98,17 @@ function getFiles($fileType = null)
     $query = mysqli_query($conn, $sql);
     $files = [];
     while ($row = mysqli_fetch_assoc($query)) {
-        $folderSlug = getFolderSlugById($row['folder_id']);
         if ($row['type'] == 'pptx') {
             $imageUrl = BASE_URL . 'assets/images/file-type/ppt.png';
         } else {
             $imageUrl = BASE_URL . 'assets/images/file-type/' . $row['type'] . '.png';
         }
-        $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        if ($row['folder_id']) {
+            $folderSlug = getFolderSlugById($row['folder_id']);
+            $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        } else {
+            $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $row['slug'] . '.' . $row['type'];
+        }
         if ($row['type'] == 'jpg' || $row['type'] == 'jpeg' || $row['type'] == 'png' || $row['type'] == 'gif') {
             $row['image_url'] = $fileDirectory;
         } else {
@@ -112,7 +119,11 @@ function getFiles($fileType = null)
         $row['modified_date_time'] = date('jS M, Y', strtotime($row['updated_at']));
 
         // Get Directory Size Starts from Here
-        $directory = 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        if ($row['folder_id']) {
+            $directory = 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        } else {
+            $directory = 'public/storage/users/' . $userId . '/' . $row['slug'] . '.' . $row['type'];
+        }
         $size = filesize($directory) / 1024;
         if ($size > (1024 * 1024))
             $fileSize = number_format(($size / (1024 * 1024)), 2) . ' GB';
@@ -150,13 +161,17 @@ function getTrashFiles($fileType = null)
     $query = mysqli_query($conn, $sql);
     $files = [];
     while ($row = mysqli_fetch_assoc($query)) {
-        $folderSlug = getFolderSlugById($row['folder_id']);
         if ($row['type'] == 'pptx') {
             $imageUrl = BASE_URL . 'assets/images/file-type/ppt.png';
         } else {
             $imageUrl = BASE_URL . 'assets/images/file-type/' . $row['type'] . '.png';
         }
-        $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        if ($row['folder_id']) {
+            $folderSlug = getFolderSlugById($row['folder_id']);
+            $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        } else {
+            $fileDirectory = BASE_URL . 'public/storage/users/' . $userId . '/' . $row['slug'] . '.' . $row['type'];
+        }
         if ($row['type'] == 'jpg' || $row['type'] == 'jpeg' || $row['type'] == 'png' || $row['type'] == 'gif') {
             $row['image_url'] = $fileDirectory;
         } else {
@@ -213,13 +228,16 @@ function getStorageDetails($directory = null)
 {
     global $conn;
     $userId = $_SESSION['id'];
+    $totalStorage = 0;
     $subscriptionSql = "SELECT * FROM subscriptions WHERE user_id = $userId";
     $subscriptionQuery = mysqli_query($conn, $subscriptionSql);
-    $packageId = mysqli_fetch_assoc($subscriptionQuery)['package_id'];
-    $packageSql = "SELECT * FROM packages WHERE id = $packageId";
-    $packageQuery = mysqli_query($conn, $packageSql);
-    $package = mysqli_fetch_assoc($packageQuery);
-    $totalStorage = $package['storage_size'];
+    while ($subscriptions = mysqli_fetch_assoc($subscriptionQuery)) {
+        $packageId = $subscriptions['package_id'];
+        $packageSql = "SELECT * FROM packages WHERE id = '$packageId'";
+        $packageQuery = mysqli_query($conn, $packageSql);
+        $package = mysqli_fetch_assoc($packageQuery);
+        $totalStorage = $totalStorage + $package['storage_size'];
+    }
     if ($totalStorage >= (1024 * 1024)) {
         $storageDetails['totalStorage'] = number_format($totalStorage / (1024 * 1024), 0) . ' GB';
     } else if ($totalStorage >= 1024 && $totalStorage < (1024 * 1024)) {
@@ -231,8 +249,12 @@ function getStorageDetails($directory = null)
     $query = mysqli_query($conn, $sql);
     $size = 0;
     while ($row = mysqli_fetch_assoc($query)) {
-        $folderSlug = getFolderSlugById($row['folder_id']);
-        $directory = 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        if ($row['folder_id']) {
+            $folderSlug = getFolderSlugById($row['folder_id']);
+            $directory = 'public/storage/users/' . $userId . '/' . $folderSlug . '/' . $row['slug'] . '.' . $row['type'];
+        } else {
+            $directory = 'public/storage/users/' . $userId . '/' . $row['slug'] . '.' . $row['type'];
+        }
         $size += filesize($directory);
     }
     // Get Directory Size Starts from Here
@@ -240,39 +262,34 @@ function getStorageDetails($directory = null)
     if ($size >= (1024 * 1024)) {
         $totalUsedSpace = number_format($size / (1024 * 1024), 0);
         $storageDetails['totalUsedSpace'] = $totalUsedSpace . ' GB';
-        $storageDetails['totalUsedSpacePercent'] = number_format((($size / $totalStorage) * 100), 2);
     } else if ($size >= 1024 && $size < (1024 * 1024)) {
         $totalUsedSpace = number_format($size / 1024, 0);
         $storageDetails['totalUsedSpace'] = $totalUsedSpace . ' MB';
-        $storageDetails['totalUsedSpacePercent'] = number_format((($size / $totalStorage) * 100), 2);
     } else {
         $totalUsedSpace = number_format($size, 0);
         $storageDetails['totalUsedSpace'] = $totalUsedSpace . ' KB';
-        $storageDetails['totalUsedSpacePercent'] = number_format(($size / $totalStorage), 2);
     }
+    $totalUsedSpacePercent = number_format(($size / $totalStorage) * 100, 2);
+    $storageDetails['totalUsedSpacePercent'] = $totalUsedSpacePercent > 100 ? 100 : $totalUsedSpacePercent;
     $freeStorage = $totalStorage - $size;
     if ($freeStorage >= (1024 * 1024)) {
-        $storageDetails['freeStorage'] = number_format($freeStorage / (1024 * 1024), 0) . ' GB';
+        $storageDetails['freeStorage'] = number_format($freeStorage / (1024 * 1024), 1) . ' GB';
     } else if ($freeStorage >= 1024 && $freeStorage < (1024 * 1024)) {
-        $storageDetails['freeStorage'] = number_format($freeStorage / 1024, 0) . ' MB';
+        $storageDetails['freeStorage'] = number_format($freeStorage / 1024, 1) . ' MB';
     } else {
-        $storageDetails['freeStorage'] = number_format($freeStorage, 0) . ' KB';
+        $storageDetails['freeStorage'] = number_format($freeStorage > 0 ? $freeStorage : 0, 1) . ' KB';
     }
     // Get Directory Size Ends Here
     return $storageDetails;
 }
 
-function checkPremiumPackage()
+function getPremiumPackage()
 {
     global $conn;
-    $sql = "SELECT COUNT(*) FROM packages WHERE name = 'Premium'";
+    $sql = "SELECT * FROM packages WHERE name = 'Premium'";
     $query = mysqli_query($conn, $sql);
-    $count = mysqli_fetch_array($query)['COUNT(*)'];
-    if ($count) {
-        return true;
-    } else {
-        return false;
-    }
+    $package = mysqli_fetch_assoc($query);
+    return $package;
 }
 
 function getActivePlans()
@@ -284,11 +301,20 @@ function getActivePlans()
     $plans = [];
     while ($row = mysqli_fetch_assoc($query)) {
         $row['is_subscribed'] = false;
+        $row['is_subscription_active'] = false;
+        $row['can_unsubscribe'] = false;
+        $subscriptionSqlQuery = mysqli_query($conn, "SELECT * FROM subscriptions WHERE user_id = '$userId'");
+        if (mysqli_num_rows($subscriptionSqlQuery) > 1) {
+            $row['can_unsubscribe'] = true;
+        }
         $planId = $row['id'];
         $subscriptionSql = "SELECT * FROM subscriptions WHERE user_id = '$userId' AND package_id = '$planId' ORDER BY id DESC LIMIT 1";
         $subscriptionQuery = mysqli_query($conn, $subscriptionSql);
-        if (mysqli_num_rows($subscriptionQuery)) {
+        $subscriptionCount = mysqli_num_rows($subscriptionQuery);
+        if ($subscriptionCount) {
             $row['is_subscribed'] = true;
+            $subscription = mysqli_fetch_assoc($subscriptionQuery);
+            $row['is_subscription_active'] = $subscription['is_active'] ? true : false;
         }
         $size = $row['storage_size'];
         if ($size >= (1024 * 1024)) {
@@ -304,4 +330,39 @@ function getActivePlans()
         $plans[] = $row;
     }
     return $plans;
+}
+
+function getPaymentSetups()
+{
+    global $conn;
+    $sql = "SELECT * FROM payment_setups ORDER BY id DESC LIMIT 1";
+    $query = mysqli_query($conn, $sql);
+    $paymentSetups = mysqli_fetch_assoc($query);
+    return $paymentSetups;
+}
+
+function countTotalFolders()
+{
+    global $conn;
+    $userId = $_SESSION['id'];
+    $sql = "SELECT COUNT(*) FROM folders WHERE user_id = '$userId'";
+    $query = mysqli_query($conn, $sql);
+    $totalFolders = 0;
+    if (mysqli_num_rows($query)) {
+        $totalFolders = mysqli_fetch_array($query)['COUNT(*)'];
+    }
+    return $totalFolders;
+}
+
+function countTotalFiles()
+{
+    global $conn;
+    $userId = $_SESSION['id'];
+    $sql = "SELECT COUNT(*) FROM files WHERE user_id = '$userId'";
+    $query = mysqli_query($conn, $sql);
+    $totalFiles = 0;
+    if (mysqli_num_rows($query)) {
+        $totalFiles = mysqli_fetch_array($query)['COUNT(*)'];
+    }
+    return $totalFiles;
 }

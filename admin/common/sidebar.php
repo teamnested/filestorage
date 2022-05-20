@@ -24,6 +24,17 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a class="sidebar-link" href="<?php echo BASE_URL . 'admin/payment-setups' ?>">
+                    <i class="align-middle mr-2 fas fa-fw fa-credit-card"></i>
+                    <span class="align-middle">Payment Setups</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="<?php echo BASE_URL . 'admin/subscriptions' ?>">
+                    <i class="align-middle mr-2 fas fa-fw fa-server"></i> <span class="align-middle">Subscriptions</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="<?php echo BASE_URL . 'admin/users' ?>">
                     <i class="align-middle mr-2 fas fa-fw fa-users"></i> <span class="align-middle">Users</span>
                 </a>

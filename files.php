@@ -62,7 +62,21 @@ $files = getFiles($fileType);
                                         <a href="#" data-title="<?php echo $file['file_name'] ?>" data-load-file="file" data-load-target="#resolte-contaniner" data-url="<?php echo $file['file_dir'] ?>" data-toggle="modal" data-target="#exampleModal">
                                             <img src="<?php echo $file['image_url'] ?>" class="img-fluid" alt="image1"></a>
                                     </div>
-                                    <h6><?php echo $file['file_name'] ?></h6>
+                                    <div class="d-flex justify-content-between">
+                                        <h6><?php echo $file['file_name'] ?></h6>
+                                        <div class="card-header-toolbar">
+                                            <div class="dropdown">
+                                                <span class="dropdown-toggle" id="dropdownMenuButton01" data-toggle="dropdown">
+                                                    <i class="ri-more-2-fill"></i>
+                                                </span>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton01">
+                                                    <a class="dropdown-item" href="<?php echo BASE_URL . 'action/files/delete?slug=' . $file['slug'] ?>"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                    <a class="dropdown-item" href="<?php echo $file['file_dir'] ?>" download><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -23,6 +23,24 @@
                                 <h5 class="card-title">Manage Users</h5>
                             </div>
                             <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <?php
+                                        if (isset($_SESSION['message'])) { ?>
+                                            <div class="alert alert-<?php echo $_SESSION['is_user_action_success'] ? 'success' : 'danger' ?> alert-dismissible" role="alert">
+                                                <div class="alert-message">
+                                                    <?php echo $_SESSION['message'] ?>
+                                                </div>
+
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                        <?php
+                                            unset($_SESSION['message']);
+                                        } ?>
+                                    </div>
+                                </div>
                                 <table id="datatables-buttons" class="table table-striped" style="width:100%">
                                     <thead>
                                         <tr>
@@ -51,8 +69,12 @@
                                                     <?php endif ?>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Modify</button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
+                                                    <a onclick="return confirm('Are you sure you want to verify <?php echo $user['first_name'] . ' ' . $user['last_name'] ?>?')" href="<?php echo BASE_URL . 'admin/action/users/verify?id=' . $user['id'] ?>" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-check"></i> Verify
+                                                    </a>
+                                                    <a onclick="return confirm('Are you sure you want to delete <?php echo $user['first_name'] . ' ' . $user['last_name'] ?>?')" href="<?php echo BASE_URL . 'admin/action/users/delete?id=' . $user['id'] ?>" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
